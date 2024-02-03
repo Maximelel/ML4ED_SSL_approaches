@@ -8,9 +8,9 @@ Semester Project in the ML4ED (Machine Learning for Education) lab at EPFL (Sept
 
 - **Educational Benefits of Reflective Writing:** Reflection on one’s performance through reflective writing offers substantial educational benefits.
 
-- **Challenges in Reflective Writing:** While reflective writing aids student teachers in developing identities and understanding their practices, it poses challenges. Students need a very personnalized feedback from the educators and educators face complexities in teaching and assessing reflective writings.
+- **Challenges in Reflective Writing:** Students need a very personnalized feedback from the educators and educators face complexities in teaching and assessing reflective writings.
 
-- **ML and NLP Solutions:** ML and NLP offer potential solutions to challenges in reflective writing. Automated evaluation techniques streamline feedback provision.
+- **ML and NLP Solutions:** ML and NLP offer potential solutions to challenges in reflective writing by automating the feedback provision.
 
 ### 🚧 Challenge
 
@@ -21,7 +21,7 @@ Semester Project in the ML4ED (Machine Learning for Education) lab at EPFL (Sept
 - **Semi-Supervised Learning with Self-Training:** Explore the potential of self-learning, a semi-supervised approach that overcomes labeling challenges by leveraging small amounts of labeled data in multi-class text classification, specifically in the nuanced analysis of reflective writings.
 
 
-## Research Question
+## 🔍 Research Question
 
 Can semi-supervised approaches reduce human effort in labeling reflective writings?
 
