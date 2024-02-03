@@ -1,12 +1,16 @@
 # Semi-Supervised Learning Approaches in Educational Contexts
 
-Semester Project in the ML4ED (Machine Learning for Education) lab at EPFL
+Semester Project in the ML4ED (Machine Learning for Education) lab at EPFL (Sept. 2023 - Jan. 2024)
 
 ## 🌐 Overview
 
-### 📚 Context
+### 📚 Context: Reflective Writings of student teachers.
 
-- **Rich Learning Data:** Witness the dramatic increase in data from technologically enhanced learning environments, providing a robust foundation for machine learning (ML) analysis.
+- **Educational Benefits of Reflective Writing:** Reflection on one’s performance through reflective writing offers substantial educational benefits.
+
+- **Challenges in Reflective Writing:** While reflective writing aids student teachers in developing identities and understanding their practices, it poses challenges. Students need a very personnalized feedback from the educators and educators face complexities in teaching and assessing reflective writings.
+
+- **ML and NLP Solutions:** ML and NLP offer potential solutions to challenges in reflective writing. Automated evaluation techniques streamline feedback provision.
 
 ### 🚧 Challenge
 
@@ -14,7 +18,7 @@ Semester Project in the ML4ED (Machine Learning for Education) lab at EPFL
 
 ### ✨ Solution Proposed
 
-- **Semi-Supervised Learning with Self-Training:** Explore the potential of self-learning, a semi-supervised approach that overcomes labeling challenges by leveraging small amounts of labeled data in multi-class text classification, specifically in the nuanced analysis of reflective writings. Understand how this methodology enhances the understanding and interpretation of these reflective texts.
+- **Semi-Supervised Learning with Self-Training:** Explore the potential of self-learning, a semi-supervised approach that overcomes labeling challenges by leveraging small amounts of labeled data in multi-class text classification, specifically in the nuanced analysis of reflective writings.
 
 
 ## Research Question
