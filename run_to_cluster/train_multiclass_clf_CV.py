@@ -1,4 +1,4 @@
-# py file to run the code for CEReD classification
+# py file to run multi-class classification with Cross-Validation on CEReD dataset
 
 ##### import ##########
 import numpy as np
@@ -54,7 +54,6 @@ def preprocess_data_for_CV(df_sentences_train, df_sentences_test, train_index, v
     print(f"Val data : {len(val_data)}")
     print(f"Test data : {len(test_data)}")
 
-    
     # Create a custom dataset
     class CustomDataset(Dataset):
         def __init__(self, text, label):
@@ -73,7 +72,7 @@ def preprocess_data_for_CV(df_sentences_train, df_sentences_test, train_index, v
 
     return train_dataset, val_dataset, test_dataset, label_encoder_test
 
-def prepare_model(model, train_dataset, val_dataset, test_dataset, freeze_weights, batch_size, epochs, learning_rate):
+def prepare_model(model, train_dataset_pp, val_dataset_pp, test_dataset_pp, freeze_weights, batch_size, epochs, learning_rate):
 
     if freeze_weights:
         # Freeze all layers except the last two
@@ -83,9 +82,9 @@ def prepare_model(model, train_dataset, val_dataset, test_dataset, freeze_weight
             param.requires_grad = True
 
     # Create data loaders
-    train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
-    val_loader = DataLoader(val_dataset, batch_size=batch_size)
-    test_loader = DataLoader(test_dataset, batch_size=batch_size)
+    train_loader = DataLoader(train_dataset_pp, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_dataset_pp, batch_size=batch_size)
+    test_loader = DataLoader(test_dataset_pp, batch_size=batch_size)
 
     # Set up optimizer and scheduler
     optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
@@ -103,8 +102,8 @@ def train_test(model, train_loader, val_loader, epochs, optimizer, scheduler, de
     train_confidence_scores = []  # Store confidence scores for train set
     val_confidence_scores = []    # Store confidence scores for validation set
 
-    #for epoch in range(epochs):
     for epoch in range(epochs):
+    #for epoch in tqdm(range(epochs), desc="Epochs"):
         #print(f"epoch {epoch} running...")
         model.train()
         train_loss = []
@@ -144,8 +143,8 @@ def train_test(model, train_loader, val_loader, epochs, optimizer, scheduler, de
         val_confidence = []
 
         with torch.no_grad():
-            #for batch in tqdm(val_loader, desc="Validation"): 
-            for batch in val_loader:
+            for batch in val_loader: 
+            #for batch in val_loader:
                 inputs = batch['text'].to(device)
                 labels = batch['label'].to(device)
                 outputs = model(inputs, labels=labels)
@@ -164,7 +163,8 @@ def train_test(model, train_loader, val_loader, epochs, optimizer, scheduler, de
 
     return train_losses, val_losses, avg_train_acc_per_epoch, avg_val_acc_per_epoch, train_confidence_scores, val_confidence_scores
 
-def cross_validate(df_sentences_train, df_sentences_test, freeze_weights, batch_size, epochs, learning_rate, predictions_list, true_labels_list, n_splits, train_loss_list, train_acc_list, val_loss_list, val_acc_list, device):
+
+def cross_validate(df_sentences_train, df_sentences_test, freeze_weights, batch_size, epochs, learning_rate, n_splits, train_loss_list, train_acc_list, val_loss_list, val_acc_list, device):
     kf = KFold(n_splits=n_splits, shuffle=True, random_state=42)
     best_val_acc = 0.0
     best_model = None
@@ -175,7 +175,7 @@ def cross_validate(df_sentences_train, df_sentences_test, freeze_weights, batch_
         train_dataset, val_dataset, test_dataset, label_encoder_test = preprocess_data_for_CV(df_sentences_train, df_sentences_test, train_index, val_index)
 
         # Initialize the pre-trained BERT model
-        model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=9).to(device)
+        model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=8).to(device)
         train_loader, val_loader, test_loader, optimizer, scheduler = prepare_model(model, train_dataset, val_dataset, test_dataset, freeze_weights, batch_size, epochs, learning_rate)
         
         train_loss_fold, val_loss_fold, train_acc_fold, val_acc_fold, _, _ = train_test(model, train_loader, val_loader, epochs, optimizer, scheduler, device)
@@ -194,7 +194,6 @@ def cross_validate(df_sentences_train, df_sentences_test, freeze_weights, batch_
             best_model = model.state_dict()  # Store the state dict of the best model
         
     return train_loss_list, val_loss_list, train_acc_list, val_acc_list, label_encoder_test, test_loader, best_model
-
 
 def evaluate(model, test_loader, label_encoder, device, accuracy_metric):
     model.eval()
@@ -217,7 +216,7 @@ def evaluate(model, test_loader, label_encoder, device, accuracy_metric):
 
     # compute accuracy
     accuracy = accuracy_metric.compute(predictions=all_preds, references=all_labels)["accuracy"]
-    print(f"Accuracy on test dataset: {np.round(accuracy,3)}")
+    print(f"Accuracy_test_dataset =  {np.round(accuracy,3)}")
     # Decode label encodings
     predicted_labels = label_encoder.inverse_transform(all_preds)
     true_labels = label_encoder.inverse_transform(all_labels)
@@ -230,39 +229,56 @@ def evaluate(model, test_loader, label_encoder, device, accuracy_metric):
     # Sort the labels alphabetically to ensure consistent order
     class_labels = sorted(unique_labels_union)
     
-    #print(f"\n Missing labels : {set(['Belief', 'Difficulty', 'Experience', 'Feeling', 'Other', 'Reflection', 'Learning', 'Perspective', 'Intention']) - unique_labels_union}\n")
-    
     return predicted_labels, true_labels, pred_confidence, class_labels
+
+
+######################################################################
+################### Main function to run the pipeline ################
+######################################################################
 
 def main(batch_size, epochs, n_splits):
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
-    # Load data from train file
-    df_sentences_train = pd.read_csv(f'./data/sentences/en/train/sentences.tsv', sep='\t')
-    df_sentences_test = pd.read_csv(f'./data/sentences/en/test/sentences.tsv', sep='\t')
+    # Load data and preprocess
+    sentences_en_tr = pd.read_csv('./data/sentences/en/train/sentences.tsv',sep='\t')
+    sentences_en_val = pd.read_csv('./data/sentences/en/val/sentences.tsv',sep='\t')
+    sentences_en_te = pd.read_csv('./data/sentences/en/test/sentences.tsv',sep='\t')
     
-    # remove category 'Reflexion'
-    df_sentences_train = df_sentences_train[df_sentences_train['y'] != 'Reflection']
-    df_sentences_test = df_sentences_test[df_sentences_test['y'] != 'Reflection']
+    # Change Difficuties to Difficulty in 'y' column of test dataset
+    sentences_en_te['y'] = np.where(sentences_en_te['y'] == 'Difficulties', 'Difficulty', sentences_en_te['y'])
+
+    # Merge the DataFrames
+    merged_df = pd.concat([sentences_en_tr, sentences_en_val, sentences_en_te], ignore_index=True)
+    # Remove the 'Reflection' label
+    merged_df = merged_df[merged_df['y'] != 'Reflection']
+    # Shuffle the merged DataFrame
+    merged_df = merged_df.sample(frac=1, random_state=42).reset_index(drop=True)
+
+    train_dataset, original_test_dataset = train_test_split(merged_df, test_size=0.15, random_state=42)
+
+    # Check lengths of sets
+    print("Train set length:", len(train_dataset))
+    print("Test set length:", len(original_test_dataset))
+    
+    print("### HP ###")
+    print(f"bs = {batch_size}")
+    print(f"n_splits = {n_splits}")
+    print(f"epochs = {epochs}")
     
     learning_rate = 2e-5
 
-    predictions_list = []
-    true_labels_list = []
     train_loss_list = []
     train_acc_list = []
     val_loss_list = []
     val_acc_list = []
 
-    train_loss_list, val_loss_list, train_acc_list, val_acc_list, label_encoder_test, test_loader, best_model  = cross_validate(df_sentences_train=df_sentences_train,
-                                                                                        df_sentences_test=df_sentences_test,
+    train_loss_list, val_loss_list, train_acc_list, val_acc_list, label_encoder_test, test_loader, best_model  = cross_validate(df_sentences_train=train_dataset,
+                                                                                        df_sentences_test=original_test_dataset,
                                                                                         freeze_weights=False, 
                                                                                         batch_size=batch_size, 
                                                                                         epochs=epochs, 
                                                                                         learning_rate=learning_rate,
-                                                                                        predictions_list = predictions_list,
-                                                                                        true_labels_list = true_labels_list,
                                                                                         n_splits=n_splits,
                                                                                         train_loss_list = train_loss_list,
                                                                                         train_acc_list = train_acc_list,
@@ -271,17 +287,19 @@ def main(batch_size, epochs, n_splits):
                                                                                         device = device)
 
 
-    ##### Print training/validation results #####
-    print(f"n_splits = {n_splits}")
-    print(f"epochs = {epochs}")
+    # Print training/validation results (to get the results in the terminal when running on the cluster)
+    print("\n### Training results ###")
     print(f"\ntrain_loss_list = {train_loss_list}")
     print(f"\nval_loss_list = {val_loss_list}")
     print(f"\ntrain_acc_list = {train_acc_list}")
     print(f"\nval_acc_list = {val_acc_list}")
 
-    # Evaluate model on test dataset
+    ################################################
+    ###### Evaluate the best model on test set #####
+    ################################################
+    
     # Initialize the model
-    model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=9).to(device)
+    model = AutoModelForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=8).to(device)
 
     # Load the state dictionary of the best model
     model.load_state_dict(best_model)
@@ -292,8 +310,10 @@ def main(batch_size, epochs, n_splits):
                                                                             label_encoder = label_encoder_test,
                                                                             device = device,
                                                                             accuracy_metric = load_metric("accuracy"))
-    
+    ######################################
     ###### Print evaluation results ######
+    ######################################
+    print("\n### Evaluation results ###")
     print(f"\npredicted_labels = {predicted_labels}")
     print(f"\ntrue_labels = {true_labels}")
     print(f"\npred_confidence = {pred_confidence}")

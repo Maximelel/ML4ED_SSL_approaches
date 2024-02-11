@@ -1,0 +1,318 @@
+Before downsampling :
+Length dataset: 5674
+{'Other': 1817, 'Experience': 1595, 'Feeling': 1172, 'Difficulty': 442, 'Belief': 384, 'Intention': 97, 'Perspective': 84, 'Learning': 83}
+
+After downsampling :
+Length downsampled dataset: 2590
+{'Feeling': 500, 'Other': 500, 'Experience': 500, 'Difficulty': 442, 'Belief': 384, 'Intention': 97, 'Perspective': 84, 'Learning': 83}
+Length of train set: 2072
+Length of test set: 518
+
+#############################
+PARAMETERS
+#############################
+reflective_categories = ['Feeling', 'Experience', 'Difficulty', 'Belief', 'Intention', 'Perspective', 'Learning']
+topN = 7
+epochs = 4
+N_shuffle_total = 10
+batch_size = 8
+learning_rate = 2e-05
+cut_downsampling = 500
+training_examples = [500, 1000, 1500, 2000]
+
+\ Train loss
+
+feeling = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.261606  0.070142  0.514157
+1                    1         0.044791  0.020287  0.149581
+2                    2         0.019917  0.003494  0.082059
+3                    3         0.011998  0.001670  0.059897
+'''
+
+experience = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.278448  0.080675  0.452230
+1                    1         0.078469  0.020251  0.248538
+2                    2         0.026575  0.005608  0.120483
+3                    3         0.012438  0.002375  0.055018
+'''
+
+difficulty = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.379815  0.180166  0.462451
+1                    1         0.161101  0.014573  0.462394
+2                    2         0.073518  0.004255  0.390138
+3                    3         0.049791  0.002977  0.334517
+'''
+
+belief = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.258831  0.101302  0.361267
+1                    1         0.085151  0.021568  0.216987
+2                    2         0.025036  0.009131  0.065513
+3                    3         0.010687  0.006124  0.022365
+'''
+
+intention = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.106125  0.029191  0.187516
+1                    1         0.036744  0.002360  0.160179
+2                    2         0.007865  0.000989  0.031215
+3                    3         0.004442  0.000338  0.024056
+'''
+
+perspective = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.135679  0.074444  0.194374
+1                    1         0.055944  0.008759  0.159356
+2                    2         0.030592  0.001824  0.142098
+3                    3         0.016455  0.000667  0.114327
+'''
+
+learning = '''
+   N_training_examples  Mean_Train_Loss  Lower_CI  Upper_CI
+0                    0         0.127740  0.088598  0.138528
+1                    1         0.044733  0.011015  0.117371
+2                    2         0.015052  0.003116  0.064607
+3                    3         0.004598  0.001095  0.008579
+'''
+
+
+
+ Val loss
+
+feeling = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.320553  0.204880  0.478920
+1                    1       0.220333  0.191133  0.253652
+2                    2       0.230713  0.197409  0.262673
+3                    3       0.252401  0.216916  0.289343
+'''
+
+experience = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.425540  0.335827  0.485478
+1                    1       0.388002  0.361834  0.450283
+2                    2       0.395288  0.353059  0.463993
+3                    3       0.437229  0.386582  0.490110
+'''
+
+difficulty = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.403124  0.267376  0.457112
+1                    1       0.343420  0.266793  0.456466
+2                    2       0.335731  0.271906  0.444940
+3                    3       0.394863  0.329710  0.449970
+'''
+
+belief = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.370929  0.335403  0.397115
+1                    1       0.436542  0.374042  0.516662
+2                    2       0.513972  0.467266  0.559304
+3                    3       0.551216  0.508572  0.590985
+'''
+
+intention = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.099517  0.074767  0.127806
+1                    1       0.103091  0.081748  0.120721
+2                    2       0.105292  0.085509  0.126068
+3                    3       0.139876  0.121062  0.156760
+'''
+
+perspective = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.113517  0.089600  0.139228
+1                    1       0.101457  0.073587  0.133934
+2                    2       0.093420  0.071524  0.130877
+3                    3       0.113331  0.080630  0.139916
+'''
+
+learning = '''
+   N_training_examples  Mean_Val_Loss  Lower_CI  Upper_CI
+0                    0       0.096319  0.088954  0.100761
+1                    1       0.083453  0.065529  0.097314
+2                    2       0.085504  0.068992  0.106533
+3                    3       0.082155  0.059592  0.105795
+'''
+
+
+
+ Train acc
+
+feeling = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0          0.9042  0.784450  0.988650
+1                    1          0.9878  0.949350  0.996775
+2                    2          0.9946  0.972667  0.999850
+3                    3          0.9969  0.983163  1.000000
+'''
+
+experience = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0        0.896800  0.830000  0.983750
+1                    1        0.976300  0.898275  0.995325
+2                    2        0.992333  0.957317  0.998667
+3                    3        0.996500  0.981062  0.999775
+'''
+
+difficulty = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0        0.853800  0.832000  0.942150
+1                    1        0.941800  0.822025  0.998550
+2                    2        0.974667  0.853867  0.999850
+3                    3        0.981150  0.867175  0.999388
+'''
+
+belief = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0          0.8908  0.864450  0.965100
+1                    1          0.9709  0.907750  0.995000
+2                    2          0.9930  0.979483  0.998000
+3                    3          0.9973  0.993400  0.998888
+'''
+
+intention = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0        0.969400  0.954000   0.99110
+1                    1        0.989100  0.957000   1.00000
+2                    2        0.997467  0.988983   0.99985
+3                    3        0.998650  0.991250   1.00000
+'''
+
+perspective = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0        0.955000  0.950000   0.97440
+1                    1        0.983900  0.962225   0.99910
+2                    2        0.992667  0.966467   0.99955
+3                    3        0.996250  0.973700   1.00000
+'''
+
+learning = '''
+   N_training_examples  Mean_Train_Acc  Lower_CI  Upper_CI
+0                    0        0.968400  0.968000  0.971100
+1                    1        0.987200  0.971225  0.998775
+2                    2        0.995467  0.979083  0.999333
+3                    3        0.999150  0.998112  1.000000
+'''
+
+
+
+ Val acc
+
+feeling = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.878571  0.810811  0.925772
+1                    1      0.935328  0.911052  0.947442
+2                    2      0.944402  0.929681  0.955792
+3                    3      0.945367  0.933108  0.953234
+'''
+
+experience = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.836486  0.806950  0.867857
+1                    1      0.875869  0.853523  0.889527
+2                    2      0.895753  0.875434  0.907963
+3                    3      0.900965  0.879295  0.908832
+'''
+
+difficulty = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.842278  0.830116  0.893485
+1                    1      0.875097  0.824131  0.906467
+2                    2      0.896911  0.836197  0.928330
+3                    3      0.896525  0.840975  0.921477
+'''
+
+belief = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.858494  0.851786  0.866554
+1                    1      0.862934  0.841313  0.880502
+2                    2      0.861004  0.852220  0.873649
+3                    3      0.873166  0.858880  0.884363
+'''
+
+intention = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.971236  0.966120  0.974469
+1                    1      0.969305  0.961197  0.975965
+2                    2      0.970270  0.957336  0.979826
+3                    3      0.968919  0.950724  0.976400
+'''
+
+perspective = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.969498  0.966120  0.974035
+1                    1      0.973359  0.969112  0.981757
+2                    2      0.974517  0.967616  0.978764
+3                    3      0.977027  0.969546  0.980695
+'''
+
+learning = '''
+   N_training_examples  Mean_Val_Acc  Lower_CI  Upper_CI
+0                    0      0.980695  0.980695  0.980695
+1                    1      0.978571  0.973407  0.980695
+2                    2      0.974903  0.950965  0.983687
+3                    3      0.978378  0.973407  0.982191
+'''
+
+
+########################################
+
+feeling = ''' 
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.860814  0.785035  0.944390
+1                    1        0.970040  0.932229  0.981215
+2                    2        0.982730  0.966661  0.989345
+3                    3        0.989046  0.976821  0.994073
+'''
+
+experience = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.880155  0.824606  0.956659
+1                    1        0.953497  0.907089  0.972441
+2                    2        0.971338  0.945279  0.981323
+3                    3        0.981335  0.965127  0.988150
+'''
+
+difficulty = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.835215  0.808885  0.872447
+1                    1        0.914797  0.820696  0.969119
+2                    2        0.952081  0.851674  0.980126
+3                    3        0.960454  0.847295  0.980759
+'''
+
+belief = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.894368  0.858820  0.937474
+1                    1        0.950886  0.899821  0.973525
+2                    2        0.969363  0.954363  0.978702
+3                    3        0.976132  0.970565  0.980628
+'''
+
+intention = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.967636  0.951189  0.984973
+1                    1        0.982420  0.948303  0.993391
+2                    2        0.991707  0.982599  0.995178
+3                    3        0.993369  0.982205  0.996672
+'''
+
+perspective = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.962575  0.954924  0.974764
+1                    1        0.978630  0.954680  0.991853
+2                    2        0.987017  0.967522  0.996041
+3                    3        0.992708  0.971538  0.999051
+'''
+
+learning = '''
+   N_training_examples  Mean_Test_Conf  Lower_CI  Upper_CI
+0                    0        0.971713  0.962053  0.980483
+1                    1        0.984986  0.972012  0.995223
+2                    2        0.988094  0.957658  0.995162
+3                    3        0.993894  0.990111  0.996322
+'''

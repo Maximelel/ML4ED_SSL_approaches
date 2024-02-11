@@ -1,0 +1,1755 @@
+Train set length: 2703
+Test set length: 764
+#############################
+PARAMETERS
+#############################
+reflective_categories = ['Experience', 'Feeling', 'Difficulty', 'Belief', 'Intention', 'Learning', 'Perspective']
+topN = 7
+epochs = 10
+n_splits = 5
+batch_size = 8
+learning_rate = 2e-05
+cut_downsampling_train = 600
+cut_downsampling_test = 200
+
+\ Train loss
+
+experience = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.479392  0.383480  0.541845
+1       1         0.345024  0.201006  0.512063
+2       2         0.204995  0.099859  0.351637
+3       3         0.118000  0.050911  0.236468
+4       4         0.064353  0.019621  0.153503
+5       5         0.033292  0.006677  0.091107
+6       6         0.022074  0.002969  0.063612
+7       7         0.012776  0.001562  0.041419
+8       8         0.009860  0.001571  0.029467
+9       9         0.007987  0.002437  0.022848
+'''
+
+feeling = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.402058  0.315932  0.528585
+1       1         0.211968  0.123025  0.427630
+2       2         0.101753  0.056279  0.197996
+3       3         0.057264  0.028232  0.107526
+4       4         0.029870  0.020252  0.043224
+5       5         0.016104  0.010351  0.023937
+6       6         0.009017  0.006493  0.012130
+7       7         0.006390  0.004073  0.009544
+8       8         0.005221  0.002714  0.008078
+9       9         0.003174  0.001448  0.005436
+'''
+
+difficulty = ''' 
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.383791  0.328443  0.406310
+1       1         0.342959  0.210986  0.395879
+2       2         0.270777  0.100268  0.359617
+3       3         0.158462  0.045939  0.217837
+4       4         0.077554  0.028183  0.119692
+5       5         0.032292  0.014198  0.053163
+6       6         0.020154  0.002774  0.034817
+7       7         0.011617  0.001519  0.019037
+8       8         0.008025  0.001205  0.014382
+9       9         0.005911  0.000930  0.010609
+'''
+
+belief = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.357191  0.334157  0.378530
+1       1         0.285269  0.215451  0.348512
+2       2         0.213256  0.118051  0.309282
+3       3         0.156075  0.045680  0.271031
+4       4         0.109625  0.015404  0.230023
+5       5         0.082164  0.008142  0.190740
+6       6         0.063212  0.002395  0.153590
+7       7         0.046388  0.002097  0.111246
+8       8         0.032672  0.000956  0.083931
+9       9         0.026122  0.001706  0.067939
+'''
+
+intention = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.134427  0.110335  0.148383
+1       1         0.097657  0.044915  0.132020
+2       2         0.061395  0.018371  0.119201
+3       3         0.033049  0.009714  0.076212
+4       4         0.023369  0.003526  0.047171
+5       5         0.024191  0.001180  0.082164
+6       6         0.008411  0.000482  0.026413
+7       7         0.005349  0.000297  0.016970
+8       8         0.003177  0.000244  0.011774
+9       9         0.003042  0.000226  0.011576
+'''
+
+learning = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.130571  0.123470  0.137151
+1       1         0.117847  0.105595  0.128364
+2       2         0.102967  0.073205  0.116160
+3       3         0.063212  0.051052  0.072080
+4       4         0.032084  0.026829  0.045073
+5       5         0.016149  0.009957  0.023741
+6       6         0.009192  0.003718  0.015817
+7       7         0.005830  0.001595  0.011120
+8       8         0.002521  0.000761  0.004626
+9       9         0.001955  0.000629  0.003816
+'''
+
+perspective = '''
+   Epochs  Mean_Train_Loss  Lower_CI  Upper_CI
+0       0         0.127257  0.118329  0.136466
+1       1         0.116865  0.106070  0.122528
+2       2         0.105754  0.080223  0.121436
+3       3         0.088556  0.056116  0.113040
+4       4         0.075520  0.032385  0.101418
+5       5         0.048081  0.016246  0.080530
+6       6         0.030410  0.010878  0.064135
+7       7         0.019082  0.003176  0.049000
+8       8         0.012404  0.000963  0.035211
+9       9         0.009242  0.000647  0.029858
+'''
+
+
+
+ Val loss
+
+experience = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.402016  0.288992  0.524250
+1       1       0.373772  0.258218  0.513242
+2       2       0.325327  0.271610  0.483682
+3       3       0.375726  0.286824  0.479625
+4       4       0.447241  0.325954  0.596937
+5       5       0.477216  0.345546  0.636119
+6       6       0.526391  0.390295  0.682796
+7       7       0.559409  0.459760  0.688229
+8       8       0.572211  0.482035  0.714548
+9       9       0.580065  0.500402  0.722076
+'''
+
+feeling = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.373405  0.206718  0.599454
+1       1       0.227070  0.189150  0.326330
+2       2       0.198578  0.148899  0.232903
+3       3       0.231520  0.162702  0.286216
+4       4       0.272881  0.170363  0.369313
+5       5       0.267678  0.202347  0.325914
+6       6       0.316236  0.254548  0.398167
+7       7       0.302018  0.233481  0.388136
+8       8       0.306664  0.241615  0.379645
+9       9       0.309400  0.239967  0.385842
+'''
+
+difficulty = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.362162  0.211117  0.433007
+1       1       0.346325  0.183949  0.439411
+2       2       0.262420  0.214539  0.307778
+3       3       0.268497  0.219346  0.296324
+4       4       0.290081  0.242852  0.347989
+5       5       0.379527  0.299269  0.475340
+6       6       0.399317  0.326730  0.492644
+7       7       0.431733  0.348847  0.537816
+8       8       0.439109  0.342472  0.527349
+9       9       0.447072  0.349961  0.535846
+'''
+
+belief = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.326288  0.235465  0.441475
+1       1       0.267572  0.164132  0.374588
+2       2       0.277632  0.160990  0.363207
+3       3       0.276119  0.179482  0.359032
+4       4       0.313834  0.263815  0.384139
+5       5       0.321380  0.260147  0.389586
+6       6       0.354891  0.280754  0.439612
+7       7       0.390366  0.332738  0.461045
+8       8       0.422204  0.346952  0.479493
+9       9       0.418973  0.332761  0.468666
+'''
+
+intention = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.115999  0.090682  0.138748
+1       1       0.097849  0.049685  0.146827
+2       2       0.065131  0.042819  0.084709
+3       3       0.077677  0.056616  0.114008
+4       4       0.092333  0.048760  0.137639
+5       5       0.085636  0.055212  0.148421
+6       6       0.091861  0.055574  0.149181
+7       7       0.098159  0.055244  0.155913
+8       8       0.098533  0.053328  0.159208
+9       9       0.099911  0.053930  0.160603
+'''
+
+learning = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.121241  0.094531  0.145437
+1       1       0.112146  0.062251  0.144313
+2       2       0.089125  0.060431  0.133150
+3       3       0.069231  0.048546  0.099481
+4       4       0.074087  0.062007  0.104316
+5       5       0.091738  0.075948  0.110757
+6       6       0.096740  0.084207  0.114945
+7       7       0.097023  0.087122  0.109193
+8       8       0.102785  0.093157  0.112117
+9       9       0.107456  0.094310  0.118155
+'''
+
+perspective = '''
+   Epochs  Mean_Val_Loss  Lower_CI  Upper_CI
+0       0       0.118783  0.087471  0.170199
+1       1       0.111982  0.079140  0.174874
+2       2       0.102010  0.074644  0.157682
+3       3       0.104768  0.066523  0.180953
+4       4       0.087501  0.066311  0.115031
+5       5       0.082960  0.064639  0.116644
+6       6       0.099369  0.068944  0.125344
+7       7       0.100363  0.066858  0.130996
+8       8       0.109561  0.073843  0.135122
+9       9       0.110455  0.077886  0.136605
+'''
+
+
+
+ Train acc
+
+experience = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.798377  0.770088  0.837743
+1       1        0.854065  0.776098  0.920907
+2       2        0.918342  0.850116  0.965310
+3       3        0.957369  0.906842  0.982331
+4       4        0.978361  0.945215  0.994450
+5       5        0.990383  0.972353  0.998982
+6       6        0.994267  0.982201  0.999954
+7       7        0.997041  0.989829  0.999954
+8       8        0.998243  0.994082  0.999954
+9       9        0.998335  0.994868  0.999538
+'''
+
+feeling = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.837127  0.781184  0.876642
+1       1        0.921380  0.820355  0.960222
+2       2        0.967350  0.930621  0.983303
+3       3        0.982982  0.966051  0.993432
+4       4        0.991768  0.987235  0.994866
+5       5        0.996023  0.993342  0.998057
+6       6        0.997688  0.996855  0.998151
+7       7        0.998705  0.997780  0.999491
+8       8        0.998890  0.998196  0.999491
+9       9        0.999445  0.999075  0.999954
+'''
+
+difficulty = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.868758  0.863245  0.876920
+1       1        0.880968  0.865141  0.918686
+2       2        0.898081  0.869435  0.968501
+3       3        0.939884  0.914282  0.985153
+4       4        0.972902  0.954737  0.991213
+5       5        0.991399  0.984466  0.996531
+6       6        0.994821  0.990010  0.999676
+7       7        0.997411  0.995839  0.999861
+8       8        0.998428  0.997225  0.999907
+9       9        0.998798  0.997781  0.999907
+'''
+
+belief = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.878931  0.874653  0.880716
+1       1        0.893636  0.876046  0.915175
+2       2        0.916204  0.873502  0.959253
+3       3        0.938124  0.885204  0.987285
+4       4        0.957456  0.908225  0.995700
+5       5        0.969479  0.927987  0.997642
+6       6        0.977341  0.941976  0.999538
+7       7        0.984925  0.961672  0.999908
+8       8        0.989365  0.968423  1.000000
+9       9        0.993249  0.981645  0.999538
+'''
+
+intention = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.968276  0.966237  0.970768
+1       1        0.974566  0.967161  0.983719
+2       2        0.979931  0.971336  0.993201
+3       3        0.988071  0.972307  0.996161
+4       4        0.992325  0.979889  0.999537
+5       5        0.993065  0.976699  0.999954
+6       6        0.997873  0.993019  1.000000
+7       7        0.998706  0.995654  1.000000
+8       8        0.999353  0.997457  1.000000
+9       9        0.999445  0.997873  1.000000
+'''
+
+learning = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.972253  0.969613  0.974516
+1       1        0.974195  0.972387  0.975821
+2       2        0.974010  0.972294  0.975821
+3       3        0.978542  0.976457  0.982887
+4       4        0.989549  0.985760  0.993756
+5       5        0.995561  0.992048  0.997179
+6       6        0.998243  0.996486  0.999075
+7       7        0.998613  0.996533  0.999907
+8       8        0.999445  0.999075  0.999954
+9       9        0.999538  0.999075  1.000000
+'''
+
+perspective = '''
+   Epochs  Mean_Train_Acc  Lower_CI  Upper_CI
+0       0        0.973640  0.970675  0.975394
+1       1        0.974750  0.972803  0.977892
+2       2        0.974935  0.973174  0.977983
+3       3        0.976970  0.973313  0.980766
+4       4        0.979189  0.973683  0.987378
+5       5        0.984831  0.976051  0.995607
+6       6        0.990474  0.978686  0.997087
+7       7        0.994544  0.984281  0.999445
+8       8        0.996763  0.988904  0.999954
+9       9        0.998058  0.992741  1.000000
+'''
+
+
+
+ Val acc
+
+experience = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.831634  0.782222  0.878928
+1       1      0.831644  0.783558  0.894640
+2       2      0.879025  0.847666  0.894455
+3       3      0.880135  0.862453  0.897762
+4       4      0.886051  0.876873  0.898891
+5       5      0.889382  0.876318  0.899649
+6       6      0.888640  0.875209  0.901479
+7       7      0.886052  0.873176  0.900904
+8       8      0.889749  0.876873  0.901664
+9       9      0.890120  0.877058  0.901664
+'''
+
+feeling = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.856067  0.756710  0.931978
+1       1      0.928240  0.890573  0.944537
+2       2      0.940066  0.925311  0.952865
+3       3      0.933777  0.918287  0.945656
+4       4      0.930068  0.916667  0.952126
+5       5      0.938215  0.935370  0.940665
+6       6      0.929713  0.898509  0.940839
+7       7      0.936365  0.933333  0.939002
+8       8      0.937474  0.933519  0.942514
+9       9      0.938584  0.933519  0.947505
+'''
+
+difficulty = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.871624  0.845656  0.912546
+1       1      0.880496  0.847111  0.932717
+2       2      0.899372  0.872438  0.931222
+3       3      0.904920  0.887800  0.932886
+4       4      0.908990  0.893161  0.934734
+5       5      0.904187  0.887246  0.922052
+6       6      0.907141  0.888151  0.928821
+7       7      0.907511  0.896673  0.923645
+8       8      0.905292  0.892791  0.925308
+9       9      0.904184  0.889279  0.923645
+'''
+
+belief = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.878658  0.847296  0.899279
+1       1      0.894928  0.863932  0.934549
+2       2      0.898256  0.871319  0.934549
+3       3      0.890478  0.842803  0.933087
+4       4      0.888631  0.854652  0.909242
+5       5      0.907129  0.870758  0.931963
+6       6      0.905281  0.876500  0.931222
+7       7      0.901214  0.867612  0.923645
+8       8      0.895665  0.858913  0.926787
+9       9      0.897512  0.857246  0.929929
+'''
+
+intention = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.966336  0.948608  0.977074
+1       1      0.966336  0.940290  0.977819
+2       2      0.977429  0.970741  0.984843
+3       3      0.975579  0.968524  0.985028
+4       4      0.975213  0.968524  0.985025
+5       5      0.976694  0.967283  0.986503
+6       6      0.974842  0.960191  0.987059
+7       7      0.977806  0.967283  0.986855
+8       8      0.978176  0.967283  0.987059
+9       9      0.977435  0.967283  0.987059
+'''
+
+learning = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.974099  0.967222  0.981146
+1       1      0.974099  0.967222  0.981146
+2       2      0.974099  0.967222  0.981146
+3       3      0.978168  0.967778  0.984843
+4       4      0.976320  0.972407  0.979667
+5       5      0.976320  0.969259  0.981146
+6       6      0.976322  0.972454  0.982625
+7       7      0.975953  0.970790  0.982806
+8       8      0.975953  0.970790  0.981142
+9       9      0.975953  0.970795  0.981142
+'''
+
+perspective = '''
+   Epochs  Mean_Val_Acc  Lower_CI  Upper_CI
+0       0      0.974844  0.962657  0.981331
+1       1      0.974844  0.962657  0.981331
+2       2      0.971886  0.961553  0.980957
+3       3      0.973363  0.962287  0.979482
+4       4      0.967814  0.961118  0.975966
+5       5      0.973364  0.962472  0.977819
+6       6      0.970405  0.965244  0.975746
+7       7      0.972994  0.965429  0.977815
+8       8      0.972254  0.966907  0.977412
+9       9      0.971143  0.965429  0.974122
+'''
+
+################################
+######### START TEST ###########
+################################
+Experience
+Feeling
+Difficulty
+Belief
+Intention
+Learning
+Perspective
+
+Overall accuracy of multiple binary clf : 0.9482
+
+Weights : [200, 177, 82, 57, 19, 13, 16]
+Weighted accuracy of multiple binary clf : 0.9217
+
+
+accuracies_bin = [0.8861256544502618, 0.9397905759162304, 0.9384816753926701, 0.912303664921466, 0.9803664921465969, 0.9921465968586387, 0.9882198952879581]
+class_labels = [['Experience', 'Other'], ['Feeling', 'Other'], ['Difficulty', 'Other'], ['Belief', 'Other'], ['Intention', 'Other'], ['Learning', 'Other'], ['Other', 'Perspective']]
+
+predicted_labels_experience = ['Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Experience' 'Experience' 'Experience' 'Other' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Experience' 'Experience' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Experience' 'Experience' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Experience' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other']
+
+
+predicted_labels_feeling = ['Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Feeling' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other']
+
+
+predicted_labels_difficulty = ['Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Difficulty'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty'
+ 'Difficulty' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty'
+ 'Difficulty' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other'
+ 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other']
+
+
+predicted_labels_belief = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Belief' 'Belief' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Belief' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Belief' 'Other' 'Other']
+
+
+predicted_labels_intention = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Intention' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Intention' 'Other' 'Intention' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other']
+
+
+predicted_labels_learning = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other']
+
+
+predicted_labels_perspective = ['Other' 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Perspective'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Perspective' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other']
+
+
+true_labels_experience = ['Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Experience' 'Other' 'Experience' 'Experience' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Experience' 'Experience' 'Experience' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Experience' 'Experience' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Experience' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Experience' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Experience' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Experience' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Experience' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Experience'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Experience' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Experience' 'Experience' 'Experience' 'Experience' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Experience' 'Experience'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Experience' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Experience' 'Experience' 'Other' 'Other' 'Experience'
+ 'Other' 'Other' 'Experience' 'Other' 'Other' 'Experience' 'Other'
+ 'Experience' 'Experience' 'Other' 'Experience' 'Experience' 'Experience'
+ 'Other' 'Other' 'Other' 'Experience' 'Other' 'Other' 'Other' 'Other'
+ 'Experience']
+
+
+true_labels_feeling = ['Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Feeling' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling'
+ 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other'
+ 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling'
+ 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Feeling' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Feeling' 'Other' 'Other' 'Feeling'
+ 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Feeling'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Feeling' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Feeling' 'Other' 'Other'
+ 'Other']
+
+
+true_labels_difficulty = ['Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty'
+ 'Difficulty' 'Difficulty' 'Difficulty' 'Other' 'Difficulty' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other'
+ 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Difficulty' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Difficulty' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Difficulty'
+ 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Difficulty' 'Other'
+ 'Difficulty' 'Other' 'Other' 'Other' 'Difficulty' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other']
+
+
+true_labels_belief = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Belief'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Belief' 'Belief' 'Other'
+ 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Belief'
+ 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Belief' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Belief' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other']
+
+
+true_labels_intention = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Intention' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Intention' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Intention' 'Other' 'Other']
+
+
+true_labels_learning = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Learning'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Learning' 'Learning' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Learning' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Learning' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other']
+
+
+true_labels_perspective = ['Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Perspective' 'Other' 'Perspective' 'Other' 'Perspective' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Perspective' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Perspective' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other'
+ 'Other' 'Other' 'Other' 'Other' 'Other' 'Other' 'Other']
+
+
+pred_confidence_experience = [0.99949634, 0.9997793, 0.9868695, 0.99978215, 0.99966574, 0.9992938, 0.99971706, 0.9997676, 0.9992969, 0.9997768, 0.99951303, 0.999676, 0.9997861, 0.99889, 0.999491, 0.9994809, 0.9981679, 0.9986546, 0.99332535, 0.99965215, 0.9993327, 0.999765, 0.9994554, 0.9997725, 0.99590516, 0.99233246, 0.99979156, 0.9997166, 0.99954635, 0.9997633, 0.9996983, 0.99976593, 0.9996681, 0.78309816, 0.9997693, 0.99950075, 0.9994241, 0.9997875, 0.99955565, 0.99978966, 0.99950314, 0.99965346, 0.9994986, 0.9985863, 0.99919313, 0.9982399, 0.9997453, 0.99944705, 0.9994814, 0.92799425, 0.9997688, 0.9997662, 0.9995147, 0.99593276, 0.9997633, 0.99977845, 0.9997476, 0.99975044, 0.99965537, 0.9997743, 0.99946505, 0.99941015, 0.99938846, 0.9997595, 0.9997607, 0.9997718, 0.9985342, 0.9990626, 0.9997626, 0.7437001, 0.999382, 0.9997726, 0.99972934, 0.99948835, 0.999453, 0.99978274, 0.9997677, 0.99973446, 0.9997603, 0.99977976, 0.9997434, 0.99834716, 0.999548, 0.99973506, 0.9995925, 0.9997781, 0.99978155, 0.99967647, 0.9997807, 0.999765, 0.9982969, 0.9992913, 0.99933594, 0.99364835, 0.99957544, 0.9997681, 0.9997826, 0.999741, 0.9996426, 0.96011484, 0.99228066, 0.9995441, 0.9997756, 0.9997538, 0.99824995, 0.99974674, 0.99977905, 0.99975806, 0.9989042, 0.99869055, 0.9995664, 0.9997209, 0.99978656, 0.9994698, 0.9997392, 0.9997354, 0.9995402, 0.9997522, 0.9997677, 0.99898964, 0.99967754, 0.9994425, 0.99967897, 0.99822205, 0.9994869, 0.9996742, 0.9994154, 0.99977463, 0.9997776, 0.85228497, 0.9995735, 0.9997614, 0.5250784, 0.99966335, 0.99978024, 0.99974424, 0.9997725, 0.7442251, 0.99638474, 0.9997458, 0.9997813, 0.9994253, 0.99971694, 0.9995179, 0.9997701, 0.9996786, 0.9997559, 0.99967456, 0.9997489, 0.7618955, 0.99953556, 0.99978024, 0.9985997, 0.99972457, 0.9997733, 0.999765, 0.9968201, 0.7692323, 0.9983985, 0.9997868, 0.9997608, 0.99954116, 0.99944454, 0.999767, 0.9997893, 0.99976, 0.9367528, 0.9995771, 0.99742126, 0.99974674, 0.9997861, 0.99974793, 0.99952877, 0.99973434, 0.9997794, 0.9997576, 0.9916121, 0.99879503, 0.9997348, 0.9977393, 0.99976045, 0.67921656, 0.9997913, 0.9997588, 0.9997161, 0.9997271, 0.9975055, 0.9985929, 0.99591416, 0.9983254, 0.99977654, 0.9951874, 0.9929288, 0.9997789, 0.99977356, 0.9889008, 0.9996388, 0.9996074, 0.9990006, 0.9996494, 0.99962246, 0.99973696, 0.99956864, 0.9997248, 0.99970907, 0.9993718, 0.99978393, 0.9994549, 0.65350825, 0.9997085, 0.9997321, 0.99976677, 0.99976915, 0.99939716, 0.9997502, 0.9997671, 0.9995683, 0.9997625, 0.989319, 0.99246514, 0.9997898, 0.9990404, 0.999759, 0.9997465, 0.6042279, 0.99978226, 0.9997261, 0.99977356, 0.91925234, 0.99956816, 0.9996444, 0.99976283, 0.99977654, 0.99979156, 0.99977785, 0.99460757, 0.9409339, 0.997424, 0.9997675, 0.9997304, 0.9997445, 0.99978334, 0.99974376, 0.9996412, 0.99977595, 0.9986603, 0.99974555, 0.9963074, 0.99977785, 0.9994342, 0.99976724, 0.9997298, 0.99977845, 0.99976, 0.99936086, 0.99975115, 0.9997596, 0.9997527, 0.99978083, 0.99802065, 0.9994655, 0.9997539, 0.99945897, 0.99978477, 0.99950397, 0.5045656, 0.9997799, 0.99859446, 0.9997651, 0.9997632, 0.9997739, 0.99962413, 0.999716, 0.9997669, 0.999754, 0.9997565, 0.9964896, 0.9978079, 0.89987886, 0.9995764, 0.9963651, 0.99969196, 0.9994185, 0.9997743, 0.9997658, 0.9992625, 0.99968934, 0.943853, 0.99975747, 0.99749136, 0.9997348, 0.99971026, 0.99972135, 0.99908817, 0.9995567, 0.9997559, 0.999726, 0.99963975, 0.99497813, 0.9997366, 0.99961627, 0.9997309, 0.9997825, 0.87774324, 0.999775, 0.8125793, 0.99977154, 0.99969876, 0.99976546, 0.99977213, 0.8177483, 0.7738347, 0.9993623, 0.99977344, 0.9990069, 0.9997812, 0.9997751, 0.999767, 0.9996921, 0.9997147, 0.9997651, 0.9993499, 0.9992799, 0.9997799, 0.99958056, 0.9997719, 0.9992095, 0.99974793, 0.9884597, 0.9995011, 0.9994742, 0.99978334, 0.9997639, 0.99977916, 0.9990056, 0.9997751, 0.99840885, 0.9997322, 0.9993604, 0.9996234, 0.99971074, 0.9994948, 0.99280953, 0.9982305, 0.99478734, 0.98996884, 0.8077697, 0.9997795, 0.9997904, 0.9997757, 0.99970835, 0.999742, 0.9995054, 0.9997172, 0.6202645, 0.99943775, 0.99409026, 0.9997826, 0.9997708, 0.99961287, 0.9997553, 0.99975187, 0.9989372, 0.9997719, 0.9963399, 0.99976224, 0.99933076, 0.99211067, 0.9994172, 0.9996867, 0.9997758, 0.999716, 0.9997621, 0.9997453, 0.9161242, 0.99971014, 0.9992072, 0.9997824, 0.9997845, 0.9985782, 0.9992144, 0.9997825, 0.99957854, 0.99976426, 0.99935967, 0.9995877, 0.9984421, 0.99977833, 0.9997533, 0.99977034, 0.999617, 0.99977976, 0.9995432, 0.9994561, 0.99952185, 0.9997714, 0.9997727, 0.99936885, 0.9995722, 0.9994573, 0.99912506, 0.9745025, 0.99970895, 0.9997603, 0.9994398, 0.9997818, 0.9997328, 0.99977404, 0.9996983, 0.99972826, 0.99976295, 0.99926513, 0.7027111, 0.9995795, 0.99978477, 0.97621435, 0.9685948, 0.9890721, 0.9997887, 0.99977165, 0.99197644, 0.8593401, 0.9997507, 0.9997758, 0.9997633, 0.9943157, 0.9997764, 0.9842951, 0.9992368, 0.99953806, 0.99916506, 0.999556, 0.99976236, 0.9997569, 0.9997613, 0.9997471, 0.9829715, 0.77396333, 0.9996872, 0.9997689, 0.99976736, 0.9981875, 0.99926513, 0.999736, 0.9995491, 0.99912447, 0.9996001, 0.99951565, 0.9997799, 0.9994449, 0.99975866, 0.99976796, 0.99975365, 0.99978703, 0.92036873, 0.99977297, 0.9997751, 0.99975663, 0.75983274, 0.9997862, 0.9986552, 0.9997521, 0.9996736, 0.99976915, 0.99806195, 0.999005, 0.9965867, 0.9993537, 0.99867636, 0.999777, 0.9997178, 0.9997594, 0.99976915, 0.99856997, 0.99965584, 0.99966, 0.5371806, 0.99978036, 0.9997763, 0.99968755, 0.9997826, 0.9997861, 0.9997731, 0.99978286, 0.9997788, 0.9995073, 0.9995597, 0.9992818, 0.99977607, 0.9996282, 0.9984053, 0.99955267, 0.99829835, 0.9923469, 0.9997904, 0.9982602, 0.9993649, 0.99977034, 0.99975556, 0.99977225, 0.99760747, 0.998998, 0.99973744, 0.9997098, 0.9991272, 0.9996885, 0.9997824, 0.9997445, 0.9995442, 0.99975914, 0.9995307, 0.99975234, 0.99972004, 0.9990746, 0.9997522, 0.9997775, 0.9997867, 0.99975747, 0.9968641, 0.9994006, 0.9997874, 0.9997466, 0.99977106, 0.9996871, 0.99974304, 0.99975663, 0.9185527, 0.99977237, 0.9996891, 0.98054034, 0.9990559, 0.99971205, 0.99978215, 0.9997594, 0.99101275, 0.9996086, 0.99802244, 0.9997875, 0.99969244, 0.9992879, 0.9992244, 0.99976426, 0.9997675, 0.9994821, 0.9997789, 0.99973696, 0.99733007, 0.9997732, 0.9996991, 0.9997708, 0.99651754, 0.9992207, 0.99905795, 0.99975353, 0.9996488, 0.99876034, 0.99976486, 0.9997775, 0.99978393, 0.9981192, 0.9997687, 0.9997707, 0.99976736, 0.99944085, 0.99973553, 0.9995523, 0.99867994, 0.99975914, 0.99239033, 0.9990115, 0.999587, 0.9995427, 0.9997787, 0.9995441, 0.99974626, 0.99975663, 0.9996816, 0.998823, 0.99978167, 0.99978083, 0.9995461, 0.9997888, 0.51136965, 0.5010376, 0.9996755, 0.99968004, 0.99974686, 0.9992569, 0.9992343, 0.9995919, 0.9994597, 0.99976593, 0.6216709, 0.9996768, 0.9997732, 0.99978787, 0.99849415, 0.99977165, 0.9762319, 0.9989785, 0.9992724, 0.99978, 0.9997874, 0.9986059, 0.9994573, 0.99971336, 0.99977094, 0.9993272, 0.9997904, 0.9996238, 0.9982048, 0.9993723, 0.9997787, 0.99977714, 0.9945732, 0.99951005, 0.9965469, 0.9913838, 0.99950063, 0.6603592, 0.9997638, 0.9997874, 0.99237144, 0.9997811, 0.9994941, 0.9997662, 0.9997671, 0.9986033, 0.98781943, 0.9997825, 0.9997594, 0.99950206, 0.9997694, 0.9996729, 0.88315046, 0.9997662, 0.999683, 0.99952257, 0.999729, 0.9783815, 0.9986797, 0.9979291, 0.9997857, 0.99977094, 0.999788, 0.9995004, 0.9704378, 0.999767, 0.99968827, 0.9997949, 0.9993926, 0.99956435, 0.9997663, 0.9975362, 0.91164535, 0.99976677, 0.9995072, 0.99977475, 0.9995443, 0.9997764, 0.9995652, 0.9995177, 0.99978286, 0.9997898, 0.8301354, 0.99926525, 0.9995938, 0.9977926, 0.9970601, 0.99138325, 0.99962664, 0.9984451, 0.9997689, 0.99976665, 0.9997744, 0.99868816, 0.99974376, 0.99928564, 0.99977297, 0.9997806, 0.9470623, 0.9997328, 0.9985013, 0.99977785, 0.9920323, 0.99979085, 0.99978846, 0.99975294, 0.9997669, 0.9997366, 0.9994105, 0.9994791, 0.99976915, 0.9996768, 0.9997445, 0.9818459, 0.99964166, 0.9985617, 0.9856601, 0.9986695, 0.94380033, 0.99974257, 0.9976738, 0.9994709, 0.7120023, 0.99954116, 0.9997681, 0.9994442, 0.9997358, 0.999762, 0.9997696, 0.9995345, 0.9996717, 0.86141443, 0.99969566, 0.9997148, 0.99815613, 0.99979025, 0.99977213, 0.9996525, 0.99977714, 0.98155254, 0.9995484, 0.99978846, 0.99978524, 0.99918693, 0.99978954, 0.9995685, 0.9997725, 0.9855254, 0.9997385, 0.99867934, 0.98805004, 0.99977, 0.9995895, 0.99301344, 0.99943393, 0.998919, 0.99945956, 0.9997843, 0.999764, 0.9994542, 0.9997774, 0.99976, 0.5387524, 0.7720561, 0.99978393, 0.99912757, 0.99978584, 0.999534, 0.99941325, 0.9996395, 0.9995192, 0.9996166, 0.62635064, 0.99964523, 0.9995408, 0.99977404, 0.9997247, 0.9997701, 0.9997669, 0.99967885, 0.9996762, 0.9994438]
+
+
+pred_confidence_feeling = [0.99959534, 0.9995383, 0.99963975, 0.9976185, 0.9991642, 0.9991035, 0.99942493, 0.9989504, 0.9996489, 0.99924636, 0.9991738, 0.9819633, 0.9996106, 0.99950564, 0.99948114, 0.9995209, 0.9995443, 0.9996196, 0.99963, 0.9976755, 0.9995982, 0.9977476, 0.9996278, 0.99885166, 0.9996395, 0.9849097, 0.99962187, 0.94567776, 0.9996338, 0.9882144, 0.9990816, 0.9992531, 0.99635726, 0.999549, 0.9989159, 0.9995455, 0.99960405, 0.99936324, 0.9964857, 0.99965894, 0.9996216, 0.9995395, 0.9995098, 0.9995932, 0.9996126, 0.999622, 0.9996495, 0.9994179, 0.9996226, 0.99959344, 0.9937091, 0.9996257, 0.99950147, 0.99944574, 0.9993414, 0.9987099, 0.999159, 0.99950325, 0.99962664, 0.99916136, 0.99964154, 0.9996402, 0.999617, 0.9979013, 0.99958676, 0.999564, 0.99963856, 0.99965644, 0.6563711, 0.9889866, 0.9995994, 0.9991647, 0.9994413, 0.9955669, 0.9996408, 0.99501157, 0.9968701, 0.9989786, 0.97560287, 0.99900395, 0.99822193, 0.99964726, 0.9996151, 0.99924207, 0.99962413, 0.9994199, 0.99959904, 0.99964607, 0.9991092, 0.9110264, 0.9995895, 0.9996092, 0.9995894, 0.9996395, 0.9995951, 0.9995999, 0.9995815, 0.9932327, 0.9996369, 0.99960095, 0.9996271, 0.9995577, 0.99959654, 0.9995987, 0.99959654, 0.9988576, 0.9995946, 0.8313323, 0.9996598, 0.99957997, 0.99950874, 0.999658, 0.99673104, 0.9996427, 0.99945647, 0.9966343, 0.9995938, 0.7226741, 0.9988937, 0.9971347, 0.9985416, 0.9996203, 0.99942976, 0.6234008, 0.9996443, 0.99821633, 0.999642, 0.99922705, 0.9996443, 0.9872574, 0.9994054, 0.998949, 0.99780196, 0.9650863, 0.9991116, 0.9989913, 0.9973894, 0.99819994, 0.9996257, 0.9989034, 0.7101734, 0.99962676, 0.9994229, 0.99954885, 0.99908006, 0.9996525, 0.9990545, 0.99956304, 0.9996427, 0.8419641, 0.99963856, 0.999642, 0.9996099, 0.99638176, 0.9784266, 0.99963176, 0.9995376, 0.9317308, 0.9995776, 0.99702436, 0.99666613, 0.9995459, 0.9995901, 0.9992182, 0.99961996, 0.9927448, 0.94816315, 0.99952435, 0.999665, 0.9968995, 0.99960476, 0.9984158, 0.9996431, 0.99949765, 0.99963045, 0.9996232, 0.9891053, 0.99956924, 0.989042, 0.9996338, 0.9984811, 0.9993755, 0.99963415, 0.998838, 0.99940896, 0.99916804, 0.99855214, 0.9996137, 0.9996008, 0.9995627, 0.99760216, 0.9995952, 0.9984688, 0.9777173, 0.99901044, 0.80485165, 0.99961865, 0.9995943, 0.9994573, 0.9991615, 0.99834454, 0.9995943, 0.99955076, 0.9881896, 0.7701616, 0.99857163, 0.9987343, 0.9993917, 0.5428977, 0.99864894, 0.9995265, 0.99915373, 0.99917334, 0.9994809, 0.99918455, 0.9996007, 0.99957925, 0.99919957, 0.9993617, 0.9995427, 0.9996271, 0.99965906, 0.99874437, 0.9985776, 0.99960095, 0.9991425, 0.9996183, 0.9991666, 0.99939823, 0.9994, 0.98929775, 0.9992803, 0.9992212, 0.999616, 0.9996082, 0.99961394, 0.99960953, 0.99963415, 0.9996037, 0.99882025, 0.9984743, 0.9996544, 0.9994073, 0.9993612, 0.99926, 0.9987632, 0.99701667, 0.99945813, 0.99832124, 0.9995517, 0.999238, 0.99952567, 0.9990422, 0.9994241, 0.9995453, 0.99962723, 0.73372906, 0.9919579, 0.99948514, 0.9991266, 0.9994677, 0.9996451, 0.9994973, 0.99956304, 0.9987884, 0.99931216, 0.9933007, 0.99936265, 0.99925035, 0.9991473, 0.99947244, 0.99871373, 0.999463, 0.99904317, 0.9991211, 0.9321671, 0.9988894, 0.99950933, 0.99966013, 0.9994659, 0.99960333, 0.9995322, 0.99964285, 0.9991603, 0.99959546, 0.99935585, 0.9996087, 0.99953914, 0.99920696, 0.9996152, 0.9995421, 0.99951744, 0.99902225, 0.99965215, 0.9978332, 0.99964225, 0.9121243, 0.9995326, 0.9996364, 0.9996294, 0.99962974, 0.9982583, 0.99963284, 0.9995888, 0.99910754, 0.9993956, 0.63989556, 0.99954444, 0.9996007, 0.9995382, 0.99956936, 0.99946696, 0.9996263, 0.99954516, 0.999608, 0.9995722, 0.9990791, 0.99826497, 0.99867886, 0.9996088, 0.9988661, 0.99965715, 0.9993481, 0.99887854, 0.99964225, 0.99838483, 0.99967027, 0.9989083, 0.99965715, 0.99963164, 0.9996207, 0.9653949, 0.999057, 0.99961287, 0.9996401, 0.99922764, 0.9991412, 0.99917835, 0.99963474, 0.9996289, 0.97099304, 0.99940133, 0.9985796, 0.99962974, 0.9996458, 0.99958163, 0.9996123, 0.99945945, 0.99951065, 0.9991059, 0.9943963, 0.9996419, 0.9995055, 0.800673, 0.99595046, 0.9996013, 0.999634, 0.9996456, 0.99959403, 0.99963653, 0.9990576, 0.9989513, 0.9994842, 0.99925524, 0.99965334, 0.9995815, 0.99956673, 0.9993716, 0.999561, 0.9992204, 0.9405837, 0.99796367, 0.999081, 0.9996463, 0.9921401, 0.9990658, 0.99936956, 0.99963164, 0.9995709, 0.9996649, 0.9996489, 0.9991518, 0.999595, 0.9991974, 0.9995982, 0.999622, 0.9995869, 0.9991736, 0.9991116, 0.99965525, 0.99964917, 0.99919206, 0.99930143, 0.9996191, 0.9996451, 0.99944276, 0.9988348, 0.99952054, 0.9995937, 0.9995597, 0.9996475, 0.99963534, 0.99947745, 0.9992211, 0.9989459, 0.9983802, 0.9754896, 0.99922204, 0.9927337, 0.9994184, 0.99959046, 0.99957246, 0.9987953, 0.99961746, 0.99956506, 0.9996364, 0.6371911, 0.99937266, 0.9994542, 0.9990533, 0.99964297, 0.9982614, 0.999524, 0.99961734, 0.99912435, 0.99961394, 0.9872914, 0.9996309, 0.9996289, 0.9996364, 0.99958354, 0.99957365, 0.99827826, 0.99921274, 0.9635584, 0.9996321, 0.9995597, 0.9996456, 0.9982475, 0.9990953, 0.9991844, 0.9995297, 0.99952626, 0.9991086, 0.9991454, 0.99957293, 0.9996295, 0.9946977, 0.9992378, 0.9995596, 0.5189018, 0.99954516, 0.9869071, 0.9991399, 0.9991003, 0.9984358, 0.99679357, 0.99845195, 0.9971724, 0.7916691, 0.99963975, 0.99916315, 0.99064165, 0.9992034, 0.9996469, 0.9995937, 0.9996401, 0.9996389, 0.7311183, 0.9141353, 0.99612063, 0.99869543, 0.9995912, 0.9977406, 0.99935716, 0.5545038, 0.9996426, 0.9988237, 0.9991689, 0.99922264, 0.99961853, 0.99956995, 0.9980354, 0.99959105, 0.99960285, 0.99931324, 0.9995072, 0.99959844, 0.999134, 0.99908054, 0.9991892, 0.99963856, 0.9996251, 0.99952674, 0.9995826, 0.9995363, 0.99960035, 0.99964833, 0.9992874, 0.99916077, 0.99953043, 0.9994717, 0.9993774, 0.9851774, 0.9996369, 0.99952495, 0.99945134, 0.84219563, 0.9776024, 0.9994997, 0.9996356, 0.9672521, 0.9996556, 0.9996306, 0.9567597, 0.5258295, 0.99961996, 0.99962544, 0.99956614, 0.9996226, 0.9996394, 0.9994863, 0.99908495, 0.9993851, 0.999602, 0.9996308, 0.9670328, 0.99920887, 0.99908864, 0.99962866, 0.9996387, 0.6232145, 0.99962723, 0.9991571, 0.999653, 0.9995838, 0.98752314, 0.9391195, 0.9995714, 0.99962807, 0.9996012, 0.99909973, 0.99376315, 0.99919325, 0.9989538, 0.9996505, 0.99963653, 0.99826473, 0.9995958, 0.9994573, 0.99962366, 0.9671103, 0.9996086, 0.9992223, 0.9987005, 0.99963903, 0.99896693, 0.98917365, 0.9516936, 0.9995454, 0.99903095, 0.9989153, 0.9995585, 0.99943095, 0.99962616, 0.99966323, 0.9995945, 0.99855703, 0.99958044, 0.99826765, 0.9996141, 0.9996532, 0.9995956, 0.99949646, 0.9995459, 0.99950504, 0.95222145, 0.99964774, 0.99898034, 0.9989215, 0.9996257, 0.99686915, 0.9996382, 0.9996082, 0.9995578, 0.9996208, 0.9991806, 0.99775296, 0.99951077, 0.79830235, 0.9996468, 0.99937445, 0.9995939, 0.99960846, 0.99953604, 0.9671583, 0.99930036, 0.99921286, 0.9986878, 0.9984694, 0.9851273, 0.998901, 0.99905485, 0.69001144, 0.99965084, 0.9995685, 0.9991555, 0.99961734, 0.9996358, 0.9842688, 0.99965584, 0.9996253, 0.9992048, 0.9979851, 0.9947713, 0.9996388, 0.9996592, 0.9994748, 0.9996427, 0.99956983, 0.99305046, 0.99964094, 0.9996131, 0.9991284, 0.9992322, 0.9993368, 0.9996081, 0.9996387, 0.9996451, 0.9996424, 0.7598808, 0.9995851, 0.9991111, 0.9996536, 0.99956733, 0.99741155, 0.99962044, 0.99940765, 0.8675117, 0.7991007, 0.9991386, 0.99963987, 0.9994931, 0.99928087, 0.99790776, 0.99940825, 0.9996259, 0.9995814, 0.99670947, 0.9996177, 0.99962914, 0.99964094, 0.99954504, 0.9995982, 0.99956363, 0.99907625, 0.9994715, 0.9991621, 0.9989749, 0.99474096, 0.99963427, 0.9996588, 0.99963593, 0.9977512, 0.9978034, 0.99963653, 0.99918336, 0.99963653, 0.99766326, 0.99960893, 0.9974718, 0.9995999, 0.9751012, 0.9995634, 0.9986513, 0.9996018, 0.9990822, 0.99895144, 0.99937963, 0.99873906, 0.99965, 0.9978848, 0.99962115, 0.99962986, 0.9995808, 0.99955755, 0.9990907, 0.9968659, 0.9989796, 0.999564, 0.99957615, 0.99962676, 0.98526603, 0.99961203, 0.99915314, 0.99873894, 0.9996543, 0.99954826, 0.9995369, 0.9996227, 0.99956685, 0.99948263, 0.9995295, 0.9995479, 0.99951184, 0.9996112, 0.99964154, 0.9996141, 0.99584097, 0.9986247, 0.99454147, 0.9996611, 0.9985043, 0.9976834, 0.80261827, 0.9983487, 0.9996189, 0.9996309, 0.9993686, 0.999582, 0.99926, 0.60794395, 0.99178386, 0.9993088, 0.999549, 0.9996507, 0.9996582, 0.9995172, 0.9996039, 0.99959236, 0.5809064, 0.99965036, 0.9996358, 0.9987828, 0.9991456, 0.9994586, 0.99930835, 0.99961215, 0.99945444, 0.99817085, 0.9986351, 0.99961853, 0.99963295, 0.9993124, 0.9994754, 0.99965215, 0.999014, 0.99894446, 0.9914095, 0.9995889, 0.9996346, 0.71725273, 0.9993587, 0.9996125, 0.99961394, 0.9994956, 0.9975871, 0.9983902, 0.9986945, 0.99257386, 0.99907124, 0.99947613, 0.9957184, 0.9995907]
+
+
+pred_confidence_difficulty = [0.99987483, 0.99952734, 0.99988556, 0.99980444, 0.99969363, 0.99989784, 0.99630344, 0.99937564, 0.99988925, 0.9998945, 0.99989665, 0.9998778, 0.96759117, 0.9990702, 0.9998735, 0.999874, 0.99982506, 0.9998266, 0.99979264, 0.9998838, 0.99989355, 0.99964345, 0.99988353, 0.9998838, 0.9998833, 0.99988794, 0.9994881, 0.99985564, 0.99980015, 0.9993061, 0.9998845, 0.9998374, 0.9997526, 0.99988294, 0.9998159, 0.9998871, 0.99985397, 0.9975688, 0.99987996, 0.9949463, 0.9998534, 0.99987876, 0.99985504, 0.9998591, 0.9998996, 0.9291666, 0.9998264, 0.9998597, 0.99988055, 0.9995685, 0.99896157, 0.9995977, 0.9998975, 0.9661379, 0.99488115, 0.99984944, 0.9998672, 0.9998579, 0.99989104, 0.99982065, 0.99989295, 0.999874, 0.9998909, 0.69912654, 0.9995012, 0.99942005, 0.99986553, 0.9998951, 0.9998909, 0.9998884, 0.99985003, 0.9997224, 0.9998437, 0.99987817, 0.99987996, 0.9994356, 0.99988556, 0.9998925, 0.99985874, 0.999889, 0.99796426, 0.9998179, 0.9997435, 0.99989116, 0.99988484, 0.99914753, 0.9998951, 0.9998894, 0.99987006, 0.9998653, 0.999881, 0.99988616, 0.99989665, 0.999882, 0.95931727, 0.9999043, 0.9998908, 0.9926777, 0.99988914, 0.99989367, 0.99988484, 0.9998889, 0.9998691, 0.99986196, 0.9998801, 0.99983037, 0.9998926, 0.99980456, 0.9998877, 0.9998362, 0.99985766, 0.99957687, 0.99802256, 0.9988445, 0.99985385, 0.999811, 0.9998735, 0.9998969, 0.99971324, 0.99986064, 0.9997135, 0.9998834, 0.9998727, 0.99982315, 0.99984896, 0.999595, 0.99987996, 0.99989927, 0.99954444, 0.9997191, 0.9998617, 0.9998517, 0.9996661, 0.9982968, 0.9990526, 0.99925464, 0.999421, 0.9998684, 0.99989474, 0.9959907, 0.5172144, 0.9998864, 0.9998492, 0.999905, 0.9999038, 0.9998833, 0.9998895, 0.99989843, 0.7790537, 0.99987483, 0.9997485, 0.99986243, 0.88972884, 0.99989307, 0.9998907, 0.9998944, 0.9946656, 0.99987304, 0.9998661, 0.997897, 0.99989176, 0.999838, 0.9990514, 0.99989486, 0.9998307, 0.9998952, 0.99989295, 0.9998227, 0.9997656, 0.9998573, 0.9991855, 0.9998869, 0.9998766, 0.9998006, 0.99989045, 0.9991683, 0.9998385, 0.9998448, 0.99908197, 0.93231016, 0.999869, 0.99984884, 0.9990355, 0.9998847, 0.9998716, 0.99988675, 0.999877, 0.99951255, 0.99391264, 0.9989176, 0.9998665, 0.9998783, 0.99974626, 0.9998109, 0.999892, 0.99909174, 0.9995958, 0.9997502, 0.9997453, 0.9998945, 0.9998234, 0.99986064, 0.9998229, 0.9998677, 0.99985933, 0.99988854, 0.9214196, 0.99983394, 0.9998379, 0.9998791, 0.99980325, 0.99985373, 0.9998739, 0.9998776, 0.99982005, 0.99471694, 0.99989164, 0.9998727, 0.9998035, 0.99989295, 0.9998913, 0.9998745, 0.9998802, 0.99987984, 0.99982196, 0.99987745, 0.9455993, 0.9998975, 0.999882, 0.99987185, 0.99988115, 0.9998771, 0.9998636, 0.9993013, 0.9998919, 0.99985754, 0.9998605, 0.9998919, 0.9987633, 0.9998671, 0.99941874, 0.99931645, 0.9999044, 0.9998901, 0.99985623, 0.99987733, 0.9998678, 0.9998467, 0.9998597, 0.99989665, 0.99987054, 0.99983406, 0.9999089, 0.9998847, 0.9998888, 0.9998759, 0.99987805, 0.99980336, 0.999516, 0.9998914, 0.9998673, 0.99953127, 0.99883264, 0.9993394, 0.99918, 0.998059, 0.99987566, 0.9998636, 0.999808, 0.999882, 0.99889624, 0.9998362, 0.9998814, 0.9774311, 0.9998504, 0.99601424, 0.9998902, 0.99989414, 0.9998784, 0.9998909, 0.9998789, 0.9998845, 0.999819, 0.99988365, 0.99950266, 0.9998869, 0.99627644, 0.99987507, 0.9998803, 0.99915195, 0.99974626, 0.999521, 0.99984956, 0.99984074, 0.99985456, 0.9997657, 0.9998877, 0.9990963, 0.9998228, 0.9998889, 0.9992937, 0.99960226, 0.9995363, 0.99988294, 0.9998864, 0.9998596, 0.99985445, 0.9998822, 0.99983144, 0.99988806, 0.99982506, 0.9998983, 0.99984956, 0.99928206, 0.9998759, 0.9995497, 0.99981517, 0.9998826, 0.999887, 0.9999058, 0.999856, 0.99987054, 0.99988616, 0.9997243, 0.99988043, 0.985024, 0.9998963, 0.9998963, 0.99983716, 0.999845, 0.9998578, 0.9994715, 0.99985933, 0.99988043, 0.99986017, 0.9998777, 0.9998859, 0.99988866, 0.9977222, 0.9998672, 0.9998727, 0.9998797, 0.99983335, 0.99990106, 0.9998627, 0.99986756, 0.9998989, 0.99989295, 0.999419, 0.99988127, 0.999819, 0.99990165, 0.99988484, 0.9998487, 0.99984884, 0.9998839, 0.9998424, 0.99657214, 0.9998926, 0.9995946, 0.99988186, 0.9998913, 0.99984205, 0.9998497, 0.9998908, 0.99985504, 0.9998746, 0.9998858, 0.9998068, 0.99987936, 0.9997652, 0.9999013, 0.99988866, 0.99876815, 0.9998939, 0.999741, 0.9986914, 0.999884, 0.9995314, 0.999889, 0.999851, 0.99989533, 0.9998925, 0.9998203, 0.99988306, 0.99987817, 0.9998411, 0.9998838, 0.99988747, 0.99929905, 0.99987125, 0.9998915, 0.99987054, 0.9998585, 0.9997876, 0.99945587, 0.99972457, 0.9998715, 0.99985397, 0.9998907, 0.99983835, 0.9998653, 0.99974936, 0.9998449, 0.99971026, 0.9981351, 0.99886715, 0.99986935, 0.9998448, 0.99978226, 0.9985897, 0.99960035, 0.9998776, 0.99979335, 0.9991967, 0.99967325, 0.9998871, 0.9998691, 0.8794993, 0.99989295, 0.9998474, 0.9997651, 0.9991104, 0.99988234, 0.9998702, 0.99990034, 0.9979487, 0.99986064, 0.9998927, 0.9998796, 0.99987626, 0.99988425, 0.98578554, 0.9998598, 0.998863, 0.99163073, 0.99988437, 0.99983525, 0.999592, 0.99985814, 0.99987257, 0.9998534, 0.9998758, 0.9998759, 0.9998404, 0.99971443, 0.99987316, 0.99981517, 0.99990165, 0.99984956, 0.9998884, 0.999863, 0.9998915, 0.9998721, 0.9914437, 0.994041, 0.9995788, 0.9998765, 0.99989486, 0.99987113, 0.9998627, 0.9998616, 0.99986756, 0.99983597, 0.9998801, 0.99985814, 0.9998574, 0.99987745, 0.9998807, 0.9998658, 0.99957484, 0.99985254, 0.99987626, 0.9998267, 0.99988925, 0.9998814, 0.98429006, 0.99986684, 0.9999032, 0.9980014, 0.99984837, 0.9997954, 0.9998585, 0.99925464, 0.9998877, 0.99985707, 0.99975985, 0.99978155, 0.9998807, 0.9998994, 0.9976762, 0.99290717, 0.99989176, 0.99816245, 0.9993418, 0.99981505, 0.9998939, 0.99875915, 0.9998555, 0.9999027, 0.99988353, 0.999881, 0.99979275, 0.99989533, 0.99986696, 0.99987733, 0.99753284, 0.9998852, 0.9998584, 0.99978703, 0.99987614, 0.99975294, 0.9998529, 0.999871, 0.9998957, 0.99990094, 0.99988115, 0.99988985, 0.9998493, 0.9989354, 0.99991035, 0.999332, 0.9998492, 0.99990153, 0.9998975, 0.99984884, 0.9994404, 0.99986005, 0.9998883, 0.99985874, 0.999337, 0.9994937, 0.9991499, 0.99972945, 0.7518163, 0.99983954, 0.9998592, 0.93540496, 0.9994734, 0.9998623, 0.7039791, 0.99985826, 0.99988365, 0.99966156, 0.9998684, 0.9998833, 0.9997123, 0.9996531, 0.999874, 0.99859565, 0.9998822, 0.9998847, 0.99987173, 0.99979144, 0.99989545, 0.9988765, 0.9998771, 0.9959603, 0.9997553, 0.9998246, 0.9998423, 0.99984956, 0.9998301, 0.99988043, 0.9984805, 0.9998735, 0.99953103, 0.99989474, 0.9998535, 0.99988043, 0.99988794, 0.99988794, 0.9998944, 0.999826, 0.7908989, 0.9998809, 0.99899966, 0.99984264, 0.9998877, 0.9999012, 0.9998772, 0.9998838, 0.9998858, 0.99874, 0.9998927, 0.99980277, 0.9998939, 0.9998666, 0.9998971, 0.99989533, 0.9997646, 0.5283793, 0.9997439, 0.99926096, 0.99750227, 0.99381834, 0.9938829, 0.999894, 0.9997445, 0.9998541, 0.99985445, 0.9998281, 0.9998764, 0.9998286, 0.99985766, 0.9998927, 0.99987245, 0.9998913, 0.99986684, 0.9997669, 0.9998816, 0.99986374, 0.99988735, 0.9996667, 0.9998832, 0.99977905, 0.9928267, 0.9994338, 0.9998715, 0.99972445, 0.999866, 0.99833655, 0.9998586, 0.99980885, 0.9998777, 0.9989478, 0.9995764, 0.99988997, 0.9998487, 0.99922204, 0.9987832, 0.99987805, 0.9998776, 0.9978248, 0.99986684, 0.99886864, 0.7655953, 0.9998858, 0.99972683, 0.9998702, 0.99960655, 0.99987626, 0.9994499, 0.9998704, 0.99982893, 0.9998754, 0.9998117, 0.99978715, 0.99988806, 0.99681324, 0.9998603, 0.9998141, 0.9999081, 0.99949837, 0.94951135, 0.99986076, 0.99986494, 0.9998721, 0.9994461, 0.9998548, 0.99989223, 0.9998927, 0.9998, 0.99988747, 0.99989116, 0.9998816, 0.9998667, 0.9997514, 0.99986935, 0.9998394, 0.9997801, 0.9998728, 0.99990296, 0.9996964, 0.99983156, 0.99988747, 0.99988055, 0.9998796, 0.836321, 0.9998838, 0.9998958, 0.9998925, 0.9998702, 0.99939346, 0.99988484, 0.9997831, 0.9997664, 0.9998493, 0.99982244, 0.9998884, 0.99980897, 0.9998441, 0.99988735, 0.9998598, 0.9998745, 0.9998714, 0.99988663, 0.99969316, 0.9998778, 0.99986124, 0.99989796, 0.9997292, 0.9998808, 0.9990701, 0.99988425, 0.9998833, 0.999863, 0.99982435, 0.99990344, 0.9998379, 0.99986756, 0.9998609, 0.9993309, 0.9998041, 0.99988806, 0.9998716, 0.99987066, 0.9998971, 0.99938345, 0.99981827, 0.9986089, 0.9998864, 0.9998323, 0.99938464, 0.9998541, 0.99987996, 0.99428636, 0.9998797, 0.99953663, 0.99984455, 0.9997992, 0.9998677, 0.9979558, 0.9998566, 0.9998704, 0.9998708, 0.99986625, 0.9998925, 0.9998821, 0.98953056, 0.9998944, 0.99980265, 0.9994703, 0.9998902, 0.99232024, 0.9998958, 0.99987376, 0.9998758, 0.99989474, 0.999879, 0.9998586, 0.99987316, 0.9998529, 0.999866, 0.9998055, 0.9998128, 0.9998809, 0.99989545, 0.9998752, 0.99979836, 0.99987984, 0.9998332, 0.99986017, 0.6481691]
+
+
+pred_confidence_belief = [0.9997974, 0.9996495, 0.9997776, 0.9994344, 0.99975306, 0.9998111, 0.9998105, 0.9997782, 0.9976781, 0.9998073, 0.9998129, 0.9998079, 0.99931884, 0.9997942, 0.9998153, 0.99980754, 0.9998166, 0.999793, 0.9998037, 0.9998115, 0.99982053, 0.9997696, 0.9998216, 0.999765, 0.9997527, 0.99981016, 0.99979717, 0.995175, 0.9997981, 0.9998091, 0.9997764, 0.9998006, 0.99976367, 0.9997869, 0.9992638, 0.9997322, 0.99981433, 0.99960274, 0.9997943, 0.99876785, 0.99981374, 0.9997818, 0.9998191, 0.99973804, 0.99976987, 0.99972385, 0.9997805, 0.9998142, 0.9997856, 0.99981385, 0.99980587, 0.9987556, 0.9998184, 0.9998117, 0.999808, 0.9997093, 0.9998159, 0.96914893, 0.9997348, 0.99938965, 0.9997967, 0.99865735, 0.9998116, 0.9998029, 0.99506, 0.9998155, 0.99980134, 0.99973744, 0.9997986, 0.99965227, 0.99980956, 0.99980325, 0.9998048, 0.999818, 0.99857926, 0.9025124, 0.9998197, 0.9997693, 0.9998209, 0.99977916, 0.99795985, 0.999796, 0.99757713, 0.99977595, 0.9997726, 0.9998006, 0.9976343, 0.96462905, 0.9997111, 0.99967694, 0.99979705, 0.9998061, 0.9998036, 0.99980754, 0.99981767, 0.9084008, 0.941721, 0.99975353, 0.9981731, 0.9996543, 0.9997999, 0.9998204, 0.9967878, 0.99974376, 0.9997948, 0.9998103, 0.99960405, 0.9998179, 0.99981064, 0.9997646, 0.99980515, 0.9979401, 0.99980706, 0.9997496, 0.99949765, 0.999795, 0.99981886, 0.9997818, 0.9996798, 0.9997758, 0.9674056, 0.9998149, 0.9998173, 0.987854, 0.9998, 0.9997911, 0.9998155, 0.99981445, 0.99979573, 0.9997079, 0.9996779, 0.99964523, 0.99978787, 0.99981076, 0.5882492, 0.99959, 0.99980015, 0.99981576, 0.99949074, 0.99977, 0.9997873, 0.9998149, 0.99977404, 0.9997416, 0.9997949, 0.9980059, 0.99980766, 0.52580273, 0.99958795, 0.99981076, 0.99872774, 0.9982015, 0.99980575, 0.9996207, 0.99910396, 0.99978524, 0.99932075, 0.9998049, 0.99960405, 0.99837, 0.58933055, 0.99981576, 0.9997967, 0.9998217, 0.99969935, 0.9997938, 0.999806, 0.99981827, 0.9993605, 0.9997825, 0.9998078, 0.999806, 0.9998147, 0.9997247, 0.99877423, 0.9997801, 0.9998006, 0.9997937, 0.9997738, 0.9997975, 0.99977046, 0.99981636, 0.99978215, 0.9998221, 0.99970907, 0.99980944, 0.99977297, 0.99965274, 0.99974626, 0.9997919, 0.9998037, 0.9997867, 0.99973816, 0.9998115, 0.99979585, 0.9997522, 0.99974877, 0.9540534, 0.9997271, 0.9998036, 0.9927886, 0.99960834, 0.99982566, 0.999777, 0.89408535, 0.9998053, 0.99980646, 0.9998149, 0.9998037, 0.9998148, 0.99968207, 0.99981827, 0.9997768, 0.9997639, 0.9997781, 0.9997936, 0.99977964, 0.9997774, 0.99981076, 0.9998062, 0.9477145, 0.9998128, 0.99981636, 0.99980897, 0.9922646, 0.99977654, 0.99980825, 0.99980575, 0.9997087, 0.99979264, 0.7802596, 0.9997987, 0.99982053, 0.9995834, 0.9997584, 0.99498653, 0.99977535, 0.99978274, 0.99981135, 0.9998016, 0.99976104, 0.9997609, 0.9997912, 0.9997396, 0.9998204, 0.99974126, 0.9998179, 0.9997366, 0.99798405, 0.9997558, 0.9996253, 0.9997942, 0.9998129, 0.99507856, 0.99979717, 0.99948406, 0.9112977, 0.99975747, 0.999683, 0.9997893, 0.9998166, 0.9998054, 0.99981374, 0.9742278, 0.99975353, 0.9997813, 0.99977857, 0.99980396, 0.99981624, 0.9998147, 0.9997899, 0.99966466, 0.9997763, 0.99978, 0.9995728, 0.9998006, 0.99980253, 0.9997974, 0.99975175, 0.9998029, 0.9996704, 0.9994174, 0.9998173, 0.9998048, 0.99978405, 0.99980384, 0.99980587, 0.9997631, 0.9998024, 0.9997727, 0.9970849, 0.9998228, 0.99978465, 0.9998159, 0.9998053, 0.9998123, 0.99906665, 0.9997844, 0.9997826, 0.9987136, 0.9988186, 0.99192554, 0.99973184, 0.9998166, 0.9998072, 0.99855906, 0.9816797, 0.9997514, 0.8210458, 0.9058589, 0.9997843, 0.9996346, 0.9998023, 0.9997757, 0.99980074, 0.99979264, 0.94486725, 0.99979514, 0.9998048, 0.99971527, 0.99980897, 0.99974495, 0.99982613, 0.999814, 0.9998103, 0.9997508, 0.99972636, 0.99981266, 0.9997439, 0.99973196, 0.9998211, 0.9879417, 0.9998109, 0.99917346, 0.9998173, 0.999811, 0.9998179, 0.99971694, 0.9998179, 0.9998135, 0.9993851, 0.9998117, 0.9998087, 0.99979347, 0.9998037, 0.9996879, 0.9997893, 0.9997627, 0.9997296, 0.9998074, 0.99979705, 0.9988305, 0.99981433, 0.99980015, 0.999798, 0.9998186, 0.9998085, 0.9996804, 0.9997812, 0.9998128, 0.9998024, 0.9998061, 0.9998099, 0.9997949, 0.9998035, 0.89244515, 0.999772, 0.99980026, 0.9997987, 0.9998124, 0.9998135, 0.9984705, 0.99982053, 0.9997671, 0.9998111, 0.99978095, 0.9998233, 0.99942786, 0.99934405, 0.9997938, 0.9997955, 0.999778, 0.99980205, 0.9995078, 0.9997919, 0.9998099, 0.99977523, 0.9998155, 0.9997569, 0.9997881, 0.97685003, 0.9997608, 0.9998066, 0.9998061, 0.999808, 0.99945754, 0.99972624, 0.99947566, 0.9998202, 0.9998087, 0.9998079, 0.9998153, 0.9997819, 0.99977905, 0.999742, 0.9996407, 0.99937624, 0.9998166, 0.99971455, 0.9968977, 0.9998172, 0.99935657, 0.99980146, 0.99980885, 0.9998115, 0.99981445, 0.99980813, 0.9923011, 0.9934029, 0.9997949, 0.9997787, 0.9998, 0.9996921, 0.998616, 0.99968433, 0.99980706, 0.9998092, 0.9998005, 0.9997991, 0.9998233, 0.99981016, 0.986233, 0.99974984, 0.99982554, 0.9997286, 0.9997954, 0.99979085, 0.9958301, 0.99981576, 0.9996673, 0.9998072, 0.9998079, 0.9998159, 0.99965537, 0.99978405, 0.9903875, 0.99981016, 0.9997813, 0.9997943, 0.9998192, 0.999824, 0.9775869, 0.99981576, 0.9997986, 0.99977607, 0.99975747, 0.9987294, 0.99651223, 0.9998061, 0.99962354, 0.9996712, 0.99976104, 0.99980515, 0.99980086, 0.9998005, 0.9962643, 0.9998098, 0.9997913, 0.99979454, 0.9996892, 0.9995783, 0.99981827, 0.97965944, 0.99980193, 0.9997832, 0.9951835, 0.99981135, 0.9998018, 0.99980956, 0.99977344, 0.9996773, 0.9847851, 0.9998061, 0.99966466, 0.99978584, 0.999811, 0.9997918, 0.9998124, 0.9997726, 0.7953607, 0.9972568, 0.99962974, 0.99974746, 0.99978954, 0.99973506, 0.99982005, 0.9998154, 0.9982339, 0.99950206, 0.9997825, 0.9997366, 0.99981457, 0.9997607, 0.99981385, 0.9998104, 0.99959975, 0.9935915, 0.9997905, 0.99980205, 0.99972814, 0.9998035, 0.9963625, 0.99762136, 0.99981874, 0.9997956, 0.92646646, 0.99855596, 0.9988086, 0.9998055, 0.99981266, 0.9989121, 0.99979883, 0.99981433, 0.99973494, 0.998635, 0.99972886, 0.9997465, 0.9998072, 0.9997924, 0.9998087, 0.99973196, 0.9998023, 0.99966896, 0.9932767, 0.99980515, 0.99979013, 0.99979824, 0.93638325, 0.99973565, 0.99977523, 0.99981385, 0.99971086, 0.9997948, 0.99980193, 0.9998118, 0.80426455, 0.9997968, 0.99972457, 0.8121313, 0.9994369, 0.9997663, 0.99981195, 0.9989759, 0.9998147, 0.99981946, 0.9998035, 0.9997739, 0.97099406, 0.9995608, 0.9997756, 0.9998123, 0.7492108, 0.9954503, 0.9998, 0.99925834, 0.9997975, 0.99979085, 0.95230573, 0.99977213, 0.99981445, 0.99979824, 0.99980503, 0.63558775, 0.9998122, 0.999772, 0.9994954, 0.999796, 0.9997812, 0.99979967, 0.9997075, 0.99980396, 0.99743795, 0.9998141, 0.99978906, 0.98939264, 0.9938164, 0.99977905, 0.99982053, 0.9998209, 0.9998029, 0.9998047, 0.9998084, 0.99980944, 0.9998221, 0.65938526, 0.9962393, 0.99981076, 0.99980336, 0.99974114, 0.9998074, 0.99979335, 0.99785644, 0.9998098, 0.99981385, 0.9998067, 0.9980421, 0.999767, 0.99978334, 0.9233175, 0.99978703, 0.9997651, 0.99977034, 0.9997874, 0.9995394, 0.9996822, 0.9993204, 0.9997168, 0.9998084, 0.9998037, 0.9998104, 0.99977976, 0.9980063, 0.9997794, 0.999716, 0.999813, 0.9996927, 0.9997576, 0.99980813, 0.9998018, 0.9997626, 0.9997845, 0.9998165, 0.9997825, 0.9997936, 0.9997969, 0.99977654, 0.9998066, 0.9998211, 0.99981993, 0.9998192, 0.9998041, 0.9997956, 0.9998017, 0.99981886, 0.98726964, 0.99972516, 0.99964356, 0.999813, 0.999542, 0.57304347, 0.99976844, 0.9997359, 0.9988512, 0.99979585, 0.9998191, 0.9997806, 0.99980956, 0.999806, 0.9974312, 0.9958811, 0.99979764, 0.9998148, 0.9345413, 0.99976546, 0.99982387, 0.9998166, 0.99975365, 0.95966494, 0.9998116, 0.999765, 0.9998217, 0.6299813, 0.999798, 0.99308735, 0.9993118, 0.9997874, 0.9998042, 0.9998147, 0.7181667, 0.99970824, 0.99978465, 0.99980825, 0.99980336, 0.99978393, 0.9997551, 0.99850684, 0.99982315, 0.96754706, 0.99980253, 0.9963348, 0.99980384, 0.99973375, 0.9993992, 0.9992107, 0.99978596, 0.9997998, 0.99976355, 0.99927825, 0.9998097, 0.99980706, 0.99961805, 0.9997614, 0.9997851, 0.9998252, 0.9997906, 0.9997973, 0.9996867, 0.9998153, 0.99981755, 0.9997745, 0.9944924, 0.99927455, 0.9997651, 0.99982256, 0.7115538, 0.99974734, 0.9997904, 0.9453511, 0.999485, 0.70830536, 0.9996948, 0.9998024, 0.999752, 0.9997464, 0.9997781, 0.99978477, 0.99689084, 0.99981195, 0.9997671, 0.9998092, 0.9936702, 0.9998099, 0.9997837, 0.99980587, 0.99980515, 0.9997861, 0.99981135, 0.99981195, 0.9998159, 0.9993795, 0.99976104, 0.9998178, 0.99743074, 0.99974555, 0.9998097, 0.99308324, 0.99972373, 0.9997769, 0.9993444, 0.9998111, 0.999726, 0.9998093, 0.9998149, 0.99979657, 0.99980277, 0.99980885, 0.99980456, 0.9985923, 0.9997975, 0.99944323, 0.9996326, 0.99434495, 0.9998087, 0.99978966]
+
+
+pred_confidence_intention = [0.99988425, 0.999889, 0.9998288, 0.9997576, 0.9997193, 0.9998869, 0.9998864, 0.9998864, 0.9678228, 0.9998847, 0.999882, 0.9998474, 0.99945277, 0.9998785, 0.99987733, 0.99988115, 0.99988353, 0.9998896, 0.9998629, 0.99988914, 0.9998822, 0.99988246, 0.9998791, 0.9998847, 0.9998865, 0.9998907, 0.9998882, 0.99988353, 0.9998889, 0.99987996, 0.9998784, 0.9966775, 0.9998728, 0.9998417, 0.9998841, 0.9998858, 0.99988616, 0.99986446, 0.99988806, 0.9998865, 0.9998903, 0.99988127, 0.99988174, 0.99987435, 0.9998802, 0.9998766, 0.99988234, 0.99988425, 0.9998758, 0.9998853, 0.99988663, 0.80238456, 0.99988127, 0.9998872, 0.99988306, 0.99988353, 0.9998809, 0.9998715, 0.9998859, 0.9998895, 0.9998791, 0.9998802, 0.9998871, 0.99987555, 0.9998766, 0.9998779, 0.9998778, 0.99988234, 0.999816, 0.9998869, 0.99988496, 0.99988055, 0.99988735, 0.999881, 0.9998722, 0.9998841, 0.9998815, 0.9998851, 0.99988616, 0.99987984, 0.9998877, 0.99302566, 0.9998604, 0.9998752, 0.9998789, 0.9998857, 0.9998883, 0.9998822, 0.99988556, 0.99988914, 0.9998665, 0.999879, 0.9998838, 0.9998884, 0.99987936, 0.9998841, 0.9998838, 0.99986947, 0.9998498, 0.99986947, 0.99982256, 0.9998864, 0.99988365, 0.9998841, 0.9998907, 0.9998672, 0.99987423, 0.99988806, 0.99988115, 0.9998869, 0.9998709, 0.9998784, 0.999884, 0.9998815, 0.9998599, 0.99988437, 0.999881, 0.99988186, 0.99987864, 0.9998864, 0.9998778, 0.9998816, 0.999879, 0.9998859, 0.99987984, 0.99987423, 0.9998877, 0.9998859, 0.99988985, 0.99988246, 0.9998741, 0.9998801, 0.9998822, 0.9998872, 0.99987876, 0.99953115, 0.9998778, 0.99988496, 0.9998264, 0.9998863, 0.99988735, 0.99987054, 0.9943146, 0.99988663, 0.99988985, 0.9998895, 0.9998808, 0.99987984, 0.9998827, 0.9998851, 0.99988127, 0.99988306, 0.9998839, 0.9998778, 0.9997261, 0.99988604, 0.99988306, 0.99988496, 0.99988675, 0.9998872, 0.9998807, 0.99987435, 0.9998827, 0.9998851, 0.97414, 0.99988604, 0.9998828, 0.9998672, 0.99981827, 0.9998534, 0.9998865, 0.9998797, 0.9998822, 0.9994832, 0.9998883, 0.9998816, 0.99988675, 0.9998839, 0.99988437, 0.9998901, 0.9998684, 0.9998716, 0.9998908, 0.99988306, 0.9998852, 0.99988437, 0.9998902, 0.99965334, 0.99988246, 0.9998777, 0.99988246, 0.99988616, 0.9998847, 0.99981743, 0.9998783, 0.99988544, 0.9998617, 0.99988127, 0.9998814, 0.99989116, 0.9998822, 0.9998815, 0.99988556, 0.99987745, 0.9998592, 0.9998795, 0.9998807, 0.9998851, 0.99988437, 0.9998902, 0.9991911, 0.9998895, 0.99988234, 0.99988794, 0.999882, 0.9998752, 0.99984014, 0.99989045, 0.9998832, 0.99987805, 0.9998877, 0.99986947, 0.9998841, 0.999887, 0.9998795, 0.99988985, 0.9998884, 0.99988616, 0.9998783, 0.99987245, 0.9997429, 0.99988353, 0.99988663, 0.9975381, 0.9998802, 0.999881, 0.99988437, 0.99988663, 0.9998882, 0.99989045, 0.9998692, 0.99987423, 0.99988806, 0.9998566, 0.9998741, 0.9998777, 0.999869, 0.9998815, 0.9998809, 0.9998797, 0.9998832, 0.99985397, 0.99988794, 0.9998901, 0.9998803, 0.9998803, 0.99988294, 0.9971288, 0.9998839, 0.99985886, 0.999879, 0.9998845, 0.9998876, 0.9998882, 0.9998776, 0.9998908, 0.999879, 0.99987304, 0.99987185, 0.9998801, 0.9998659, 0.9998623, 0.9998779, 0.999869, 0.99988437, 0.99988663, 0.9998857, 0.9998859, 0.88088816, 0.99988544, 0.9998696, 0.9998785, 0.99987495, 0.9998876, 0.99988306, 0.9998785, 0.99988604, 0.99988294, 0.99988925, 0.9998841, 0.99988246, 0.99988604, 0.999874, 0.9998783, 0.9998851, 0.9998841, 0.9998734, 0.999887, 0.99987113, 0.9998766, 0.9998888, 0.99988544, 0.9998878, 0.9997732, 0.99988973, 0.9998771, 0.9998791, 0.9998857, 0.9998871, 0.99778, 0.8803266, 0.99988806, 0.9998795, 0.71927106, 0.9998815, 0.9998853, 0.99986374, 0.9998872, 0.99985456, 0.99988985, 0.9998907, 0.99987817, 0.99987483, 0.9998864, 0.9998752, 0.9998841, 0.9998785, 0.9998845, 0.99987483, 0.99988604, 0.9998876, 0.99981827, 0.99988437, 0.89585584, 0.9998727, 0.9998784, 0.9998759, 0.99881774, 0.99988294, 0.9998754, 0.9975495, 0.9998796, 0.99988866, 0.9998846, 0.9998808, 0.9998901, 0.99988675, 0.99988115, 0.99987376, 0.9998791, 0.9998683, 0.9998883, 0.99987817, 0.99806446, 0.99988484, 0.9998852, 0.99987507, 0.99977845, 0.99988914, 0.99987996, 0.99988794, 0.9998789, 0.9998857, 0.9998914, 0.99988675, 0.99987006, 0.9998808, 0.9998715, 0.9998783, 0.99988186, 0.9998896, 0.9998869, 0.9998884, 0.9998869, 0.9998882, 0.999887, 0.999884, 0.9998852, 0.99932694, 0.9998821, 0.99986017, 0.9998809, 0.99988437, 0.999877, 0.99987483, 0.9998772, 0.9998808, 0.9998857, 0.99988365, 0.99988806, 0.95879227, 0.9998882, 0.9998809, 0.9998752, 0.99988556, 0.99988675, 0.9998779, 0.99985766, 0.9998872, 0.9998852, 0.9998828, 0.9998859, 0.9998796, 0.99978405, 0.9998853, 0.99987996, 0.9998424, 0.99988866, 0.99988496, 0.99988616, 0.99987733, 0.9998827, 0.99988127, 0.99989045, 0.9998807, 0.9998884, 0.9998785, 0.9998871, 0.99988484, 0.9998907, 0.8514143, 0.9998847, 0.99987197, 0.99987614, 0.999887, 0.9998871, 0.9998834, 0.9998863, 0.9998841, 0.99987996, 0.9998776, 0.9986659, 0.99988925, 0.99988556, 0.996259, 0.99988747, 0.9998863, 0.9998908, 0.9998754, 0.9998839, 0.9998698, 0.99988246, 0.999882, 0.99987626, 0.99988556, 0.9998648, 0.9998877, 0.9998919, 0.9998871, 0.9998927, 0.99988306, 0.99987876, 0.99987936, 0.99988997, 0.99987924, 0.99988043, 0.9998878, 0.9998845, 0.9998841, 0.9998851, 0.9998808, 0.9998561, 0.99988246, 0.9998846, 0.9998704, 0.9998784, 0.9998727, 0.9998802, 0.99988806, 0.99987686, 0.9998808, 0.9998865, 0.9998853, 0.9998901, 0.9998908, 0.99988055, 0.9998864, 0.9998778, 0.99988353, 0.999876, 0.9998858, 0.9998845, 0.9998807, 0.9996582, 0.999884, 0.99986005, 0.9998723, 0.9998845, 0.99988294, 0.99988055, 0.99988115, 0.9998857, 0.9998846, 0.999889, 0.99988174, 0.9998628, 0.9998863, 0.99986374, 0.99989057, 0.9998863, 0.9998889, 0.9998864, 0.9998579, 0.9998863, 0.99393904, 0.9998764, 0.99988794, 0.9998839, 0.9998536, 0.9998833, 0.9998857, 0.99988127, 0.9998863, 0.9998752, 0.9998807, 0.99988294, 0.99987996, 0.99984753, 0.99988484, 0.99988294, 0.99988556, 0.9998816, 0.9998834, 0.99988616, 0.99981767, 0.99735355, 0.9998783, 0.999887, 0.9998084, 0.99988246, 0.99988544, 0.99988663, 0.999879, 0.9998759, 0.9998852, 0.9973826, 0.9998859, 0.9998752, 0.99988234, 0.9934969, 0.9998839, 0.999882, 0.9998784, 0.9992111, 0.9998797, 0.9998864, 0.9998865, 0.9998652, 0.9998801, 0.99988115, 0.99989116, 0.9998834, 0.99987936, 0.9998771, 0.999863, 0.99986017, 0.99985766, 0.9998876, 0.9998827, 0.9998814, 0.9998832, 0.99984944, 0.99987674, 0.9998765, 0.99556327, 0.9998791, 0.99988747, 0.9848557, 0.9998857, 0.999869, 0.99987876, 0.99987364, 0.9998878, 0.9998771, 0.999879, 0.9998816, 0.999874, 0.99987614, 0.999889, 0.9998884, 0.9998857, 0.99988747, 0.9998807, 0.99986625, 0.99988174, 0.99988973, 0.99988425, 0.99988115, 0.9998864, 0.99988747, 0.9998791, 0.9998838, 0.9998903, 0.9998896, 0.9998845, 0.9998876, 0.9998847, 0.999884, 0.9998878, 0.9998814, 0.9998784, 0.9998877, 0.9998814, 0.99988234, 0.999871, 0.99987686, 0.9998858, 0.9998845, 0.8849571, 0.9998816, 0.9998865, 0.99973863, 0.9998815, 0.9998759, 0.999882, 0.99987555, 0.9998826, 0.9998841, 0.9974316, 0.99989104, 0.99988496, 0.99987125, 0.9998839, 0.97031206, 0.99987876, 0.99987817, 0.99988544, 0.9997075, 0.9998846, 0.99943036, 0.99988544, 0.99988496, 0.99988425, 0.99989057, 0.99988353, 0.9998894, 0.999876, 0.9998845, 0.9998882, 0.9998845, 0.99988186, 0.9998739, 0.6718699, 0.99988985, 0.99988914, 0.9998746, 0.9998704, 0.99988437, 0.9998816, 0.9998827, 0.9998814, 0.9998816, 0.9998858, 0.99988663, 0.9998871, 0.99988556, 0.99986506, 0.99987745, 0.99988306, 0.99987674, 0.9998808, 0.9998759, 0.9998809, 0.99988365, 0.9998895, 0.9998791, 0.9998822, 0.9998864, 0.99987125, 0.99988055, 0.9998876, 0.9998857, 0.9998872, 0.99984133, 0.9998758, 0.9998727, 0.99988425, 0.9998832, 0.9998865, 0.9998536, 0.9998759, 0.99988616, 0.99988735, 0.9998871, 0.9998832, 0.999884, 0.9998894, 0.9998863, 0.9998778, 0.9998877, 0.9998857, 0.99988854, 0.9998832, 0.9936824, 0.9998802, 0.99986374, 0.9998783, 0.9998845, 0.9998871, 0.9997851, 0.99987125, 0.9980426, 0.9998827, 0.99988735, 0.9998784, 0.9998696, 0.9998894, 0.9998847, 0.9998864, 0.9998828, 0.9998838, 0.99987435, 0.99987876, 0.9998871, 0.99988365, 0.99785966, 0.9998858, 0.99988353, 0.9998864, 0.99986935, 0.9998809, 0.9998807, 0.997811, 0.9998852, 0.99744654, 0.9998779, 0.9998913, 0.9998783, 0.99979454, 0.999876, 0.9998814, 0.9998795, 0.9998871, 0.9998896, 0.99987996, 0.99988866, 0.99987924, 0.99988604, 0.9998741, 0.9998863, 0.99987054, 0.999881, 0.9998795, 0.999879, 0.9998834, 0.9998851, 0.9998901, 0.99988055, 0.9998883, 0.9998826, 0.9998851, 0.9998703, 0.9998814, 0.99988747, 0.99987376, 0.9998759, 0.9998822, 0.99987984, 0.999876, 0.99987733, 0.99988973, 0.992141, 0.99987984, 0.9998865]
+
+
+pred_confidence_learning = [0.9997222, 0.99972624, 0.9997372, 0.9997298, 0.999723, 0.9997296, 0.9997346, 0.9997317, 0.9997336, 0.9997352, 0.9997266, 0.99967325, 0.99972504, 0.9997148, 0.9991866, 0.9997266, 0.99972564, 0.9997329, 0.9997298, 0.99972576, 0.9997229, 0.99967027, 0.99972934, 0.99972945, 0.99973196, 0.99972457, 0.9997315, 0.9997373, 0.9997328, 0.99973136, 0.99971825, 0.99972993, 0.9997241, 0.9997147, 0.99970144, 0.9997323, 0.9997297, 0.9997322, 0.9997334, 0.9997216, 0.99973327, 0.9997322, 0.9997279, 0.9997156, 0.99966943, 0.9995995, 0.99971205, 0.99973136, 0.9997002, 0.9997321, 0.999701, 0.99972004, 0.9997304, 0.9997347, 0.9997286, 0.9997292, 0.99972683, 0.99972516, 0.9997274, 0.99971884, 0.99970526, 0.99973446, 0.99973434, 0.9997327, 0.99972457, 0.9992455, 0.9997365, 0.9997242, 0.99973613, 0.9997305, 0.9997253, 0.9996031, 0.99972945, 0.99971503, 0.99972326, 0.9997335, 0.99973756, 0.99972945, 0.9996799, 0.9997292, 0.9997284, 0.999729, 0.9996979, 0.9997346, 0.99972564, 0.9997328, 0.9997092, 0.99961144, 0.99972445, 0.7451069, 0.99972934, 0.99972445, 0.99973255, 0.9997187, 0.999729, 0.99972206, 0.99967873, 0.9997137, 0.99964786, 0.9989641, 0.9996879, 0.999718, 0.99973446, 0.99972886, 0.9997346, 0.9997253, 0.8695601, 0.9997335, 0.9997265, 0.9997297, 0.99972636, 0.99970573, 0.99973565, 0.9997327, 0.9996834, 0.9997327, 0.9997354, 0.99973685, 0.99972755, 0.99972945, 0.9997359, 0.9997265, 0.9997272, 0.99972516, 0.9997209, 0.9997117, 0.99972326, 0.9997378, 0.9997049, 0.9997271, 0.9996785, 0.9997284, 0.9997218, 0.9997358, 0.99971956, 0.9997335, 0.9997373, 0.9997303, 0.99972695, 0.9997316, 0.9228838, 0.9997185, 0.9997304, 0.999729, 0.9997236, 0.99972206, 0.99969995, 0.9997055, 0.9997373, 0.9997209, 0.9996855, 0.99973255, 0.99972636, 0.999718, 0.99968016, 0.99901426, 0.99969316, 0.9997259, 0.99972755, 0.999731, 0.99970883, 0.99971277, 0.9415902, 0.99973017, 0.9997291, 0.999731, 0.999728, 0.99971086, 0.99970067, 0.9997142, 0.99973816, 0.9997336, 0.99972636, 0.9996809, 0.9997327, 0.9527079, 0.99972945, 0.9996611, 0.9997311, 0.9997242, 0.99972826, 0.999734, 0.9997309, 0.99971086, 0.99972576, 0.99973387, 0.99972814, 0.9997342, 0.9997236, 0.9997327, 0.99323505, 0.99971396, 0.9997203, 0.998024, 0.99972385, 0.99973744, 0.99973184, 0.9997228, 0.9997087, 0.7940789, 0.99971956, 0.99972516, 0.9997253, 0.9997353, 0.99967957, 0.9997378, 0.99972445, 0.999734, 0.99972993, 0.99973124, 0.9997259, 0.99970406, 0.99972063, 0.99971896, 0.99973506, 0.9997218, 0.99971455, 0.99973184, 0.9997267, 0.99973303, 0.999734, 0.9997316, 0.9997348, 0.999731, 0.9997304, 0.9997335, 0.99973124, 0.999734, 0.99973017, 0.9996942, 0.99973553, 0.99973434, 0.9997243, 0.9997261, 0.9997296, 0.99973303, 0.9997217, 0.99911195, 0.9997341, 0.9997315, 0.9997249, 0.99972206, 0.99972945, 0.9997224, 0.99973077, 0.9997067, 0.9997292, 0.99963284, 0.9997317, 0.9997228, 0.9997255, 0.9996501, 0.99972695, 0.99972695, 0.99972886, 0.9997286, 0.99973434, 0.999729, 0.99972755, 0.9997359, 0.9997322, 0.9997212, 0.99973005, 0.999734, 0.9997261, 0.9997311, 0.9997348, 0.99972063, 0.99972135, 0.9997223, 0.9997211, 0.9996855, 0.99972457, 0.9997359, 0.9997328, 0.99973947, 0.9997348, 0.9997125, 0.99972767, 0.99970657, 0.99972636, 0.999699, 0.99972135, 0.99973565, 0.9997212, 0.9997204, 0.9997316, 0.9997265, 0.9997223, 0.9997303, 0.99968517, 0.999729, 0.9997327, 0.9997311, 0.999729, 0.9997328, 0.999731, 0.99949956, 0.99972767, 0.9967991, 0.99970776, 0.9997358, 0.9997228, 0.9727118, 0.99973375, 0.9997286, 0.99970454, 0.99971336, 0.9997347, 0.99973303, 0.99784327, 0.9997296, 0.9993845, 0.9997292, 0.9997327, 0.9997329, 0.99972767, 0.9997124, 0.9997111, 0.99971753, 0.99971706, 0.9997209, 0.99973077, 0.99973696, 0.99973077, 0.99973375, 0.99972814, 0.9997334, 0.99973243, 0.9996991, 0.99973005, 0.9997286, 0.99973434, 0.9997317, 0.9997323, 0.9997286, 0.9997309, 0.99967396, 0.9997328, 0.9997234, 0.9997305, 0.99972826, 0.99973077, 0.99972564, 0.99973184, 0.9900671, 0.99973625, 0.99968493, 0.99972016, 0.9997199, 0.99966264, 0.9995826, 0.99973136, 0.9997323, 0.9997212, 0.99972636, 0.9997317, 0.9997304, 0.9978067, 0.99971527, 0.9997247, 0.99972206, 0.9996706, 0.9997335, 0.99973434, 0.9997124, 0.999734, 0.9997321, 0.99973184, 0.9997322, 0.99910945, 0.99971706, 0.9997255, 0.99973136, 0.9997377, 0.99973387, 0.9997193, 0.9992424, 0.99972945, 0.9997223, 0.99973685, 0.9997298, 0.99973017, 0.9997123, 0.9997254, 0.9997266, 0.99973184, 0.9997273, 0.9997304, 0.999734, 0.99972945, 0.9997358, 0.99973077, 0.9997098, 0.99973315, 0.9997199, 0.99969363, 0.9997147, 0.999731, 0.99818724, 0.9997329, 0.9997255, 0.99972516, 0.99972874, 0.99969757, 0.9997247, 0.99733657, 0.9997392, 0.95335436, 0.9997248, 0.99973816, 0.9997347, 0.99973315, 0.9997353, 0.99971956, 0.99973387, 0.99973494, 0.99973696, 0.9997181, 0.99972314, 0.9997383, 0.9997296, 0.99964654, 0.9997272, 0.99973065, 0.9997341, 0.99973613, 0.9997315, 0.99972993, 0.9997023, 0.9997347, 0.99972683, 0.9997167, 0.99972945, 0.99970955, 0.9997249, 0.99971205, 0.99973637, 0.99972063, 0.9996213, 0.9997266, 0.9997291, 0.9997291, 0.9997346, 0.9997317, 0.9997147, 0.99972636, 0.9997271, 0.9997329, 0.99973136, 0.9997296, 0.9996656, 0.99971145, 0.99966836, 0.9997086, 0.9997284, 0.9997224, 0.9997311, 0.99972385, 0.9997327, 0.99972194, 0.9997272, 0.9997304, 0.9997166, 0.9997335, 0.9997267, 0.9997187, 0.9997055, 0.99973303, 0.99971575, 0.9997285, 0.99973303, 0.9996426, 0.9997298, 0.99972194, 0.99973017, 0.9997191, 0.99970967, 0.99972945, 0.9996743, 0.9980824, 0.9997315, 0.9997261, 0.9997191, 0.9997284, 0.99972576, 0.9996474, 0.9997278, 0.99973124, 0.9996979, 0.9997212, 0.99972373, 0.9997261, 0.9997267, 0.99972075, 0.99971443, 0.9997261, 0.99973255, 0.99971825, 0.9997341, 0.99973184, 0.9997315, 0.9997265, 0.99973255, 0.9997274, 0.99973387, 0.99972385, 0.99973077, 0.99973077, 0.99972945, 0.99973613, 0.99973506, 0.99970835, 0.99973124, 0.9997346, 0.9997203, 0.99972755, 0.99972683, 0.9997315, 0.9997305, 0.9997303, 0.9996953, 0.9996928, 0.9997316, 0.99972266, 0.999731, 0.99973375, 0.999728, 0.9997311, 0.99972755, 0.9997267, 0.99973243, 0.99972004, 0.9997092, 0.999734, 0.99972767, 0.99972993, 0.9997234, 0.99968505, 0.9997336, 0.9997346, 0.9997316, 0.99972504, 0.9997352, 0.9997284, 0.99973005, 0.99972814, 0.99972564, 0.9997329, 0.9996222, 0.9997347, 0.9997322, 0.99970907, 0.9996872, 0.9997329, 0.9997271, 0.9997162, 0.99971455, 0.99972695, 0.9997205, 0.99972993, 0.9997286, 0.9997358, 0.99972767, 0.98765683, 0.9997012, 0.9997336, 0.9997236, 0.9995995, 0.977232, 0.9997274, 0.99971324, 0.9997323, 0.99972826, 0.9997296, 0.9997279, 0.99972945, 0.9997334, 0.9997378, 0.99972945, 0.9997342, 0.9997315, 0.9997298, 0.9997273, 0.99972683, 0.75379205, 0.99973017, 0.9997347, 0.9996643, 0.99972445, 0.9997067, 0.99973375, 0.99972814, 0.99972016, 0.9995554, 0.99972314, 0.9997347, 0.9996805, 0.99970573, 0.9997334, 0.9997241, 0.999728, 0.9997354, 0.9997341, 0.9997316, 0.99972886, 0.99973136, 0.99972874, 0.9997187, 0.99973506, 0.99967396, 0.9997334, 0.99973327, 0.9997243, 0.99972886, 0.99972314, 0.9997317, 0.99972564, 0.99972564, 0.9997286, 0.99973077, 0.999718, 0.9997323, 0.9997274, 0.9997323, 0.9997241, 0.99973136, 0.9997069, 0.9997323, 0.99973005, 0.99971384, 0.9997112, 0.9996824, 0.999731, 0.9997336, 0.9997261, 0.99971455, 0.99973756, 0.9997285, 0.99973005, 0.99973136, 0.9996911, 0.99972993, 0.99972016, 0.9997347, 0.99970526, 0.99971396, 0.99973196, 0.9997286, 0.9997291, 0.99972767, 0.99973184, 0.9997234, 0.9996767, 0.9997309, 0.99973124, 0.9997303, 0.9997242, 0.9997274, 0.99973494, 0.9997323, 0.99973315, 0.9997292, 0.99973184, 0.9997329, 0.9997297, 0.9997241, 0.9997265, 0.9997172, 0.9997191, 0.9997267, 0.999729, 0.9997279, 0.9997274, 0.9997305, 0.99972504, 0.9997317, 0.99961144, 0.9997204, 0.9997358, 0.9997317, 0.9997292, 0.99973315, 0.9997327, 0.9996099, 0.9996983, 0.99973446, 0.99973005, 0.99972063, 0.9997329, 0.9997328, 0.99972993, 0.9997212, 0.9997346, 0.9997292, 0.99971145, 0.9997168, 0.99973434, 0.9997292, 0.99967015, 0.9997031, 0.9997205, 0.9997334, 0.99973255, 0.99972945, 0.999724, 0.999663, 0.9997358, 0.9997297, 0.99972934, 0.99971896, 0.99972886, 0.9997334, 0.99972206, 0.99970216, 0.999718, 0.99973065, 0.96618503, 0.99971443, 0.9997147, 0.99972874, 0.999728, 0.99973077, 0.99971026, 0.9997305, 0.9997304, 0.9997255, 0.99972445, 0.99973243, 0.9997328, 0.9997304, 0.9997234, 0.9997278, 0.9997311, 0.99972516, 0.99973804, 0.9996966, 0.9997191, 0.99966455, 0.9997286, 0.9996419, 0.9997137, 0.99971694, 0.99972147, 0.9997303, 0.9997242, 0.9997346, 0.9997272, 0.99972874, 0.9996493, 0.99969923, 0.9997036, 0.999731, 0.99971336, 0.9997191, 0.99972457, 0.9997272, 0.99972385, 0.9997249, 0.9997316, 0.9997398, 0.99970067, 0.9997284, 0.9997309]
+
+
+pred_confidence_perspective = [0.9996705, 0.9993344, 0.9995408, 0.99967, 0.999566, 0.9833997, 0.99966276, 0.99968004, 0.99969053, 0.99965215, 0.9996903, 0.9996407, 0.99965155, 0.99965334, 0.9996928, 0.9996326, 0.9996754, 0.7028357, 0.99937004, 0.9996531, 0.99967194, 0.9991309, 0.9994708, 0.9996612, 0.86399305, 0.9997019, 0.9996076, 0.99970067, 0.9996711, 0.99962056, 0.9996728, 0.99966896, 0.9996873, 0.9996767, 0.9995946, 0.9996364, 0.9996061, 0.9996811, 0.9994435, 0.9996138, 0.99958426, 0.999607, 0.99958605, 0.99969447, 0.99964595, 0.9954342, 0.9995901, 0.9996643, 0.9993498, 0.99968755, 0.99954283, 0.9996685, 0.99964845, 0.9996605, 0.9996824, 0.99963546, 0.99966073, 0.9995185, 0.99962413, 0.9996606, 0.9997036, 0.99967396, 0.99969876, 0.9995372, 0.9996666, 0.9996841, 0.9994299, 0.99964476, 0.9996226, 0.99967337, 0.99966884, 0.9994313, 0.9996195, 0.9996687, 0.9995747, 0.9996729, 0.9996697, 0.9993405, 0.99944884, 0.99965703, 0.9993969, 0.9996568, 0.9996338, 0.99969447, 0.9996747, 0.9996809, 0.99957603, 0.9927989, 0.9996792, 0.9994993, 0.999634, 0.9996805, 0.9991424, 0.99968994, 0.9996685, 0.9996438, 0.9995932, 0.9996953, 0.99969494, 0.9994629, 0.99962366, 0.9996666, 0.9996325, 0.99960846, 0.99799746, 0.9996971, 0.99969053, 0.9994918, 0.999647, 0.9996227, 0.9996768, 0.9996301, 0.9996619, 0.9996774, 0.9993814, 0.9996922, 0.9996631, 0.9996364, 0.9993806, 0.99961984, 0.9996264, 0.99969363, 0.9996309, 0.9996437, 0.99966, 0.9996643, 0.9989222, 0.9996644, 0.9996598, 0.99961287, 0.9996136, 0.9996687, 0.99967265, 0.76817596, 0.99968433, 0.99965894, 0.9995098, 0.99964774, 0.9996296, 0.99965906, 0.99965835, 0.9996829, 0.9996662, 0.99928844, 0.99967515, 0.99968326, 0.9996717, 0.9996431, 0.99967456, 0.9996737, 0.9996762, 0.99965334, 0.99968743, 0.9996263, 0.99966156, 0.9996774, 0.99954945, 0.99951446, 0.9995982, 0.9996674, 0.9987835, 0.9995834, 0.99963653, 0.99968684, 0.9996301, 0.9993616, 0.9996346, 0.99968266, 0.99960643, 0.9996178, 0.9996896, 0.99729353, 0.99965584, 0.9996234, 0.99967813, 0.9996791, 0.9996948, 0.9996842, 0.9996045, 0.9996909, 0.9996711, 0.9996885, 0.9994708, 0.99966574, 0.99967706, 0.99965775, 0.9996486, 0.99965656, 0.9996921, 0.99968493, 0.9996057, 0.9979164, 0.9996773, 0.9996817, 0.9996612, 0.9997104, 0.9996655, 0.99962544, 0.9996418, 0.9992743, 0.9994747, 0.9996196, 0.9996166, 0.999655, 0.9996393, 0.99953103, 0.99959356, 0.9996692, 0.9996773, 0.9993449, 0.99966323, 0.99952686, 0.9996357, 0.99696153, 0.999658, 0.99967396, 0.9996846, 0.99968946, 0.9995633, 0.99966896, 0.9996618, 0.9996068, 0.999691, 0.99962986, 0.999666, 0.9996494, 0.99962044, 0.99967, 0.9844779, 0.99966574, 0.9996699, 0.99958676, 0.9987834, 0.99969435, 0.99967945, 0.99936813, 0.9922259, 0.9996141, 0.7785619, 0.9993529, 0.99967754, 0.99967766, 0.99965537, 0.9995764, 0.9996625, 0.9994017, 0.9996792, 0.99965525, 0.99963105, 0.99968755, 0.99965096, 0.9996309, 0.99965465, 0.9934523, 0.9996884, 0.9996661, 0.9996455, 0.9996613, 0.999673, 0.99964595, 0.99954647, 0.9996884, 0.9987991, 0.99969184, 0.9996424, 0.9995303, 0.9995735, 0.9994635, 0.9994293, 0.9996475, 0.99966145, 0.9996244, 0.99964714, 0.99960274, 0.999653, 0.9996803, 0.97422814, 0.999653, 0.99185234, 0.99888664, 0.9974637, 0.9996996, 0.9996836, 0.999683, 0.9995938, 0.9947955, 0.9996965, 0.9996872, 0.99967515, 0.9996716, 0.99960655, 0.99967337, 0.9996432, 0.99966323, 0.99964654, 0.999645, 0.99957734, 0.9996308, 0.99967515, 0.99968636, 0.999663, 0.8908187, 0.9996375, 0.98979646, 0.9996412, 0.9720839, 0.999635, 0.9996152, 0.99960035, 0.9996835, 0.9995054, 0.9996574, 0.99967396, 0.99926156, 0.9996817, 0.9995066, 0.99922884, 0.9996575, 0.9996697, 0.9996767, 0.9996076, 0.99955183, 0.9996269, 0.99967194, 0.9996474, 0.99962103, 0.9995511, 0.9996244, 0.9996948, 0.9996779, 0.99970204, 0.9995622, 0.99965346, 0.9996619, 0.9996406, 0.99951017, 0.9996768, 0.9996517, 0.9996624, 0.9996903, 0.99968433, 0.9996973, 0.99968827, 0.99962723, 0.99937326, 0.9996637, 0.99966586, 0.9996711, 0.9996922, 0.999652, 0.9995189, 0.9996474, 0.99962187, 0.9903937, 0.9986267, 0.99969745, 0.99968624, 0.9814122, 0.9996964, 0.99897695, 0.99969304, 0.99964225, 0.99968445, 0.9996493, 0.99968445, 0.9996495, 0.9995747, 0.9996861, 0.9996853, 0.99949026, 0.99969554, 0.99956614, 0.9996731, 0.9995009, 0.9995603, 0.99964976, 0.9996716, 0.99969137, 0.9992454, 0.9996722, 0.9996927, 0.9996643, 0.9996613, 0.99967015, 0.9974546, 0.99956995, 0.9995814, 0.99967134, 0.50752044, 0.9995448, 0.99960274, 0.9996853, 0.99965644, 0.99968266, 0.99947566, 0.999419, 0.9996105, 0.9996215, 0.9996669, 0.9996644, 0.9992787, 0.99383175, 0.99969435, 0.9996817, 0.9996667, 0.99837214, 0.99923885, 0.9996586, 0.99921143, 0.9996495, 0.99959916, 0.9996493, 0.99961746, 0.9997062, 0.99939346, 0.99968445, 0.9995833, 0.9996859, 0.9996395, 0.99966097, 0.99966764, 0.99967074, 0.99953735, 0.9996793, 0.99967086, 0.9996724, 0.9996692, 0.99970824, 0.9987212, 0.999663, 0.9996779, 0.99963963, 0.9886469, 0.9996001, 0.9995097, 0.9996736, 0.9996333, 0.9996351, 0.9996488, 0.9995926, 0.999686, 0.99652725, 0.9994735, 0.9995308, 0.9995875, 0.9996704, 0.988713, 0.99968135, 0.9995889, 0.9996922, 0.99954337, 0.9996728, 0.9996437, 0.9996468, 0.99967575, 0.9996606, 0.9997004, 0.999637, 0.5565971, 0.9996455, 0.9996835, 0.9996822, 0.9996506, 0.99966097, 0.9996524, 0.9996737, 0.99960655, 0.99969566, 0.9996172, 0.9996939, 0.9996785, 0.9996798, 0.99967575, 0.99964166, 0.99966514, 0.9996649, 0.99964297, 0.9996946, 0.99966395, 0.99963796, 0.9996687, 0.9996296, 0.9950622, 0.9996902, 0.99966586, 0.99960095, 0.9995646, 0.9996443, 0.9996697, 0.9996555, 0.9980414, 0.99968123, 0.9996691, 0.9996043, 0.9996878, 0.99967575, 0.999648, 0.9997008, 0.999608, 0.99963677, 0.99910897, 0.9989901, 0.9996393, 0.99967587, 0.994756, 0.999435, 0.9996637, 0.9996464, 0.9996197, 0.9996499, 0.99963963, 0.9996195, 0.99959964, 0.9996762, 0.99936146, 0.99969625, 0.9996761, 0.99968576, 0.9993223, 0.9997023, 0.9996915, 0.99966824, 0.99954885, 0.9789458, 0.9996026, 0.99965954, 0.99966216, 0.99940085, 0.99962234, 0.98277897, 0.9996631, 0.99961, 0.999678, 0.9996654, 0.99966276, 0.99966276, 0.9995061, 0.9996891, 0.9996377, 0.9996618, 0.9996861, 0.99967, 0.9996555, 0.9996772, 0.99964666, 0.9996698, 0.93213487, 0.99823594, 0.99954957, 0.9996087, 0.9994848, 0.9996624, 0.9996582, 0.99383414, 0.99968255, 0.99956125, 0.999673, 0.99966335, 0.99965847, 0.99961084, 0.9996766, 0.99962735, 0.99967253, 0.99968493, 0.988962, 0.99967, 0.9996847, 0.9996847, 0.99963546, 0.9996074, 0.9996793, 0.9996804, 0.9996555, 0.99963415, 0.9996915, 0.99819225, 0.9996544, 0.9996877, 0.9996618, 0.99965227, 0.99954575, 0.9996755, 0.99969375, 0.99965715, 0.99968755, 0.9995147, 0.99945694, 0.9996792, 0.99966204, 0.9996768, 0.99909806, 0.999691, 0.9996917, 0.9995504, 0.99969006, 0.99969304, 0.99939346, 0.9996728, 0.99902236, 0.9996731, 0.9996201, 0.9996774, 0.9994337, 0.9995696, 0.9996921, 0.99967337, 0.99959224, 0.9996208, 0.99967146, 0.99962056, 0.9996687, 0.9996588, 0.9996731, 0.99968255, 0.9996437, 0.9996669, 0.99963367, 0.99967444, 0.9996908, 0.9993832, 0.9996656, 0.9996983, 0.9996519, 0.9995943, 0.9997036, 0.9996935, 0.99962926, 0.999681, 0.9996031, 0.99964035, 0.99967206, 0.9996674, 0.9994992, 0.9996414, 0.9996587, 0.99966204, 0.9996766, 0.99959916, 0.99965584, 0.76681054, 0.9996729, 0.99964094, 0.9996239, 0.99966705, 0.99966896, 0.99965954, 0.999423, 0.9996691, 0.9996544, 0.9996406, 0.99968207, 0.999705, 0.9996885, 0.99967897, 0.9980919, 0.99966824, 0.99967635, 0.9996741, 0.99959487, 0.99967384, 0.9997002, 0.9996613, 0.9995685, 0.99943024, 0.99965715, 0.9996835, 0.9996712, 0.99967754, 0.9996934, 0.9996871, 0.9996331, 0.99967647, 0.9996389, 0.9995968, 0.99963474, 0.9996309, 0.9996549, 0.9996519, 0.9996749, 0.9996673, 0.99964607, 0.99940205, 0.9996902, 0.99966896, 0.9996817, 0.9996635, 0.99961567, 0.9996966, 0.9996824, 0.99962795, 0.99966705, 0.9996032, 0.9996611, 0.99956006, 0.9996941, 0.9996762, 0.99960464, 0.99388605, 0.9995629, 0.99946827, 0.99968815, 0.99968016, 0.99964523, 0.9996729, 0.99944717, 0.99966407, 0.9996393, 0.9996593, 0.99966943, 0.99965143, 0.99962294, 0.9996611, 0.9996848, 0.999569, 0.9996371, 0.9996803, 0.9995334, 0.9912298, 0.9996402, 0.99967265, 0.9994005, 0.9996768, 0.999666, 0.9996656, 0.9996662, 0.99968195, 0.99968827, 0.9996125, 0.99969244, 0.9994337, 0.9995435, 0.99967253, 0.9996654, 0.9995697, 0.99963427, 0.99954444, 0.99966943, 0.9089633, 0.9996302, 0.99956757, 0.99959594, 0.99936384, 0.99969745, 0.9996805, 0.9995633, 0.9996983, 0.9995735, 0.99950266, 0.9996784, 0.9991202, 0.9996835, 0.9996816, 0.9996432, 0.999587, 0.9996661, 0.99955827, 0.9996817, 0.99967563, 0.99966943, 0.99967134, 0.9996635, 0.9996977, 0.9997023, 0.99946326]
