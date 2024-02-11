@@ -37,7 +37,9 @@ docker push [registry]/image_name
 ```bash
 runai submit --name NAME_JOB -p [id_runai] -i [registry]/image_name --cpu-limit 1 --gpu 1 -- python train_multiclass_clf_CV.py --batch_size 8 --epochs 10 --n_splits 5
 ```
+
     - Multiple Binary Classifiers: use [train_multiple_bin_clf_CV.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiple_bin_clf_CV.py)
+    
 ```bash
 runai submit --name NAME_JOB -p [id_runai] -i [registry]/image_name --cpu-limit 1 --gpu 1 -- python train_multiple_bin_clf_CV.py --batch_size 8 --epochs 10 --epochs_eval 3 --n_splits 5 --topN 7
 ```
