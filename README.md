@@ -32,3 +32,18 @@ Can semi-supervised approaches reduce human effort in labeling reflective writin
 - **Learning Curves Analysis:** Explore the influence of dataset size on model performance and confidence.
 
 
+---
+## Reproducibility
+
+### File structure
+
+- EDA_notebook
+- notebook_kaggle
+- run_to_cluster
+- results_visualization
+- results txt files
+
+### Report
+
+The full report of this project can be found here.
+
