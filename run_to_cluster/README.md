@@ -33,6 +33,7 @@ docker push [registry]/image_name
 - **Submit the job**
   
 Depends on which python file one wants to run, the command line in terminal is different:
+
     - Multi-class classification: use [train_multiclass_clf_CV.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiclass_clf_CV.py)
 
 ```bash
