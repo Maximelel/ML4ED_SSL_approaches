@@ -2,7 +2,9 @@
 
 ## Run on cluster
 
-The code was run on a cluster with 1 GPU for computational reason (with runai) and docker (for more information check this [tutorial](https://github.com/epfl-ml4ed/runai-tutorial)
+The code was run on a cluster with 1 GPU for computational reason (with runai) and docker (for more information check this [tutorial](https://github.com/epfl-ml4ed/runai-tutorial))
+
+The data can be found in the directory `data`.
 
 Below are the steps to run the code:
 - Starting docker (with commande line or directly on the app).
