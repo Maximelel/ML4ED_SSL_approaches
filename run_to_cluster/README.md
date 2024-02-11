@@ -5,13 +5,31 @@
 The code was run on a cluster with 1 GPU for computational reason (with runai) and docker (for more information check this [tutorial](https://github.com/epfl-ml4ed/runai-tutorial)
 
 Below are the steps to run the code:
-- Connect to docker with docker desktop (docker login or directly on the app).
-- docker build -t image_name .
-- runai login (only the first time)
-- docker login [registry]
+- Starting docker (with commande line or directly on the app).
+```Docker
+docker start
+```
+- Build a Docker image with the tag image_name from the current directory (indicated by the . at the end).
+```Docker
+docker build -t image_name .
+```
+- Login to runai
+```bash
+runai login (only the first time)
+```
+- Login to the registry
+```Docker
+docker login [registry]
+```
+- Tag your image to the registry
+```Docker
 - docker tag image_name [registry]/image_name
-- docker push [registry]/image_name
-  
+```
+- Push the image
+```Docker
+docker push [registry]/image_name
+```
+
 **Submit the job**
 Depends on which python file one wants to run, the command line in terminal is different:
   - Multi-class classification: use [train_multiclass_clf_CV.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiclass_clf_CV.py)
