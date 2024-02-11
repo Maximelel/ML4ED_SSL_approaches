@@ -31,7 +31,7 @@ runai submit --name NAME_JOB -p [id_runai] -i [registry]/image_name --cpu-limit 
 
   - Leanrning Curves Approach: use [train_multiple_bin_clf_CV_downsampled_LC.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiple_bin_clf_CV_downsampled_LC.py)
 
-'''bash
+```bash
 runai submit --name NAME_JOB -p [id_runai] -i [registry]/image_name --cpu-limit 1 --gpu 1 -- python train_multiple_bin_clf_CV_downsampled_LC.py --batch_size 8 --epochs 2 --N_shuffle_total 5 --topN 7 --cut_downsampling 600
 
 
