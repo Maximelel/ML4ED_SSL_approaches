@@ -13,9 +13,9 @@ docker start
 ```Docker
 docker build -t image_name .
 ```
-- Login to runai
+- Login to runai (only the first time)
 ```bash
-runai login (only the first time)
+runai login 
 ```
 - Login to the registry
 ```Docker
@@ -23,7 +23,7 @@ docker login [registry]
 ```
 - Tag your image to the registry
 ```Docker
-- docker tag image_name [registry]/image_name
+docker tag image_name [registry]/image_name
 ```
 - Push the image
 ```Docker
