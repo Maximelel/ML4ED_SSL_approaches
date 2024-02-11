@@ -37,13 +37,13 @@ Can semi-supervised approaches reduce human effort in labeling reflective writin
 
 ### File structure
 
-- EDA_notebook
-- notebook_kaggle
-- run_to_cluster
-- results_visualization
-- results txt files
+- EDA_notebook : notebook for the exploratory data analysis of the CeRED dataset.
+- notebook_kaggle : notebook used to experiment and test the functions before running the code on the cluster
+- run_to_cluster : directory with all the files necessary to run the code on the cluster (see README for more information).
+- results_visualization : directory containing 2 jupyter notebooks to visualize the results (saved in the directory 'results txt files') after running the code on the cluster.
+- results txt files : results saved on txt files. Can be directly reused for visualization in the notebooks in 'results_visualization'
 
 ### Report
 
-The full report of this project can be found here.
+The full report of this project can be found [here](https://github.com/Maximelel/SP_in_ML4ED/blob/main/report.pdf).
 
