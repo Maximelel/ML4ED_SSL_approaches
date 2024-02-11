@@ -14,6 +14,7 @@ Below are the steps to run the code:
 ### Submit the job
 Depends on which code one wants to run:
   - Multi-class classification: use [train_multiclass_clf_CV.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiclass_clf_CV.py)
+    
 runai submit --name experiment1-run1 -p [id_runai] -i [registry]/experiment1 --cpu-limit 1 --gpu 1 -- python train_multiclass_clf_CV.py --batch_size 8 --epochs 10 --n_splits 5
 
   - Multiple Binary Classifiers: use [train_multiple_bin_clf_CV.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiple_bin_clf_CV.py)
@@ -23,15 +24,17 @@ runai submit --name experiment1-run1 -p [id_runai] -i [registry]/experiment1 --c
   - Leanrning Curves Approach: use [train_multiple_bin_clf_CV_downsampled_LC.py](https://github.com/Maximelel/SP_in_ML4ED/blob/main/run_to_cluster/train_multiple_bin_clf_CV_downsampled_LC.py)
 - runai submit --name [NAME] -p [id_runai] -i [registry]/image_name --cpu-limit 1 --gpu 1
 
-# check the status of the job
+## Other commands after launching the run
+
+### Check the status of the job
 runai describe job hello1 -p ml4ed-lelievre
 
-# check the logs
+### Check the logs
  kubectl logs hello1-0-0 -n runai-ml4ed-lelievre
 
-# delete a job
+### Delete a job
 runai delete job -p ml4ed-lelievre hell01
 
-# see the list of jobs
+### See the list of jobs
 runai list jobs -p ml4ed-lelievre
 
